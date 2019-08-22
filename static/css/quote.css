@@ -1,0 +1,48 @@
+.container {
+    background: linear-gradient(57deg, #acb3b2, #166dc4);
+    border: 5px solid black;
+    height: 120vh;
+    position: relative;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+h1{
+    text-align: center;
+    font-weight: bold;
+    padding: 30px;
+}
+
+input {
+    float: right;
+    margin: 10px;
+    padding: 5px;
+}
+
+span {
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+
+
+input[type=button] {
+    border: none;
+    width: 100px;
+    background: white;
+    color: #000;
+    font-size: 16px;
+    line-height: 25px;
+    padding: 10px 0;
+    border-radius: 15px;
+    cursor: pointer;
+    text-align: center;
+    font-weight: bold;
+
+}
+
+input[type=button]:hover {
+    background: #000;
+    color: white;
+}
+
