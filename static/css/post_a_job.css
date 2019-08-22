@@ -1,0 +1,31 @@
+.m20 {
+  margin: 0px 0px 20px 10px;
+}
+
+.dates {
+  width: 40%;
+}
+
+img {
+  width: 100%;
+  height: auto;
+}
+
+.banner-area {
+  position: relative;
+  background: linear-gradient(57deg, #00c6a7, #1e4d92);
+  width: 100%;
+  height: auto;
+  background-repeat: no-repeat;
+  -webkit-background-size: cover;
+  background-size: cover;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+
+footer {
+  background: white;
+
+}
