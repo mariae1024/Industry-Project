@@ -31,6 +31,8 @@ app.use((req, res, next) => {
     next();
 });
 
+app.set('view engine', 'ejs');
+app.use(express.static("views"));
 
 app.use('/users', userRoutes);
 

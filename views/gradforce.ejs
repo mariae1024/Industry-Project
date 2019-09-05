@@ -11,7 +11,7 @@
 
 
     <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="static/css/gradforce.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/gradforce.css">
 
 </head>
 
@@ -34,7 +34,7 @@
 
             <div class="row">
                 <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
-                    <img src="static/img/gradforce.png" class="img-fluid">
+                    <img src="/static/img/gradforce.png" class="img-fluid">
                 </div>
                 <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
                     <h1>What do we do?</h1>
@@ -49,12 +49,17 @@
         <div class="banner-area2" id="login">
             <div class="row">
                 <div class="col-12">
-                    <form style="display:block; margin: auto; padding: 20px">
+                    <form style="display:block; margin: auto; padding: 20px" action="/users/login" method="POST">
                         <h2 style="color:black">Log In</h2><br><br>
+                        <% if(message != "") { %>
+                              <!-- <img class="vertical" src="/assets/img/icons/warning.png" alt=""> -->
+                                <div> 
+                                <%= message %></div>
+                            <% } %>   <br>
                         <a>Email</a><br>
                         <input type="text" name="email" placeholder="Email" ?><br><br>
                         <a>Password</a><br>
-                        <input type="password" name="pass" placeholder="Password"><br><br>
+                        <input type="password" name="password" placeholder="Password"><br><br>
                         <div class="form-row">
                             <div class="form-group ml-5">
                                 <label class="col-sm-2 control-label"></label>
@@ -66,7 +71,7 @@
                         </div>
                         <br>
 
-                        <a href=""><input type="button" value="Log In"></a><br><br>
+                        <input type="submit" value="Log In"><br><br>
                     <!--   <a href=""><input type="button" value="Reset"></a> <br>    --> 
 
                         <a href="#"

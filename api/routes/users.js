@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
-//const jwt = require("jsonwebtoken");
+const jwt = require("jsonwebtoken");
 
 const User = require("../models/user");
 
@@ -48,6 +48,79 @@ router.post("/signup", (req, res, next) => {
                 });
             }
         });
+});
+
+router.post("/login", (req, res, next) => {
+    User.find({ email: req.body.email })
+      .exec()
+      .then(user => {
+        if (user.length < 1) {
+          return res.status(401).json({
+            message: "Auth failed"
+          });
+        }
+        bcrypt.compare(req.body.password, user[0].password, (err, result) => {
+          if (err) {
+            return res.status(401).json({
+              message: "Auth failed"
+            });
+          }
+          if (result) {
+            const token = jwt.sign(
+              {
+                email: user[0].email,
+                userId: user[0]._id
+              },
+              process.env.JWT_KEY,
+              {
+                  expiresIn: "1h"
+              }
+            );
+             console.log('success');
+            res.render("../views/post_a_job");
+            // return res.status(200).json({
+            //   message: "Auth successful",
+            //   token: token
+            // });
+          } else{
+            // res.status(401).json({
+            //     message: "Auth failed"
+            //   });
+             // console.log('failed');
+             var message = "failed";
+             res.redirect('/users/log_in/?message=' + message);
+          }
+        });
+      })
+      .catch(err => {
+        console.log(err);
+        res.status(500).json({
+          error: err
+        });
+      });
+  });
+  
+  router.delete("/:userId", (req, res, next) => {
+    User.remove({ _id: req.params.userId })
+      .exec()
+      .then(result => {
+        res.status(200).json({
+          message: "User deleted"
+        });
+      })
+      .catch(err => {
+        console.log(err);
+        res.status(500).json({
+          error: err
+        });
+      });
+  });
+
+router.get("/log_in", (req, res)=> {
+
+    var passedVariable = req.query.message;
+    res.render("../views/gradforce", {message: passedVariable});
+
 });
 
 module.exports = router;
