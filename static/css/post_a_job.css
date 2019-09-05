@@ -2,6 +2,10 @@
   margin: 0px 0px 20px 10px;
 }
 
+.m30{
+  margin: 30px;
+}
+
 .dates {
   width: 40%;
 }
@@ -28,4 +32,26 @@ img {
 footer {
   background: white;
 
+}
+.titles {
+  font-weight: bold;
+  font-size: 24px;
+}
+
+.sub-titles {
+  font-weight: bold;
+  font-size: 16px;
+}
+
+span {
+  font-weight: 400;
+}
+
+.button-padding {
+
+  padding: 20px;
+}
+
+P {
+  font-weight: bold;
 }

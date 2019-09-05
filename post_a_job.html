@@ -21,7 +21,8 @@
             <h2>Outsource a job</h2>
           </div>
           <div class="form-group m20">
-            <label for="exampleFormControlFile1">Job Type</label>
+
+            <label class="sub-titles" for="exampleFormControlFile1">Job Type</label>
             <select id="options" class="form-control form-control-sm">
               <option value="Select">Select</option>
               <option value="IT">IT</option>
@@ -29,20 +30,22 @@
             </select>
           </div>
           <div class="form-group m20">
-            <label for="exampleFormControlInput1">Job Name</label>
-            <input type="text" class="form-control" id="jobName">
+            <label class="sub-titles" for="exampleFormControlInput1">Job Name</label>
+            <input type="text" class="form-control" id="jobName" placeholder="Name your job">
+            
           </div>
           <div class="form-group m20">
-            <label for="exampleFormControlTextarea1">Description</label>
-            <textarea class="form-control" id="description" rows="3"></textarea>
+            <label class="sub-titles"for="exampleFormControlTextarea1">Description</label>
+            <textarea class="form-control" id="description" rows="3" placeholder="Describe your job or just upload a job description file"></textarea>
+            
           </div>
           <div class="form-group m20">
-            <label for="exampleFormControlFile1">Upload a Document</label>
+            <label class="sub-titles" for="exampleFormControlFile1">Upload a Document</label>
             <input type="file" class="form-control-file" id="upload">
           </div>
           <div class="form-group m20">
-            <span>Preferred method of payment</span><br>
-            <div class="form-check form-check-inline">
+            <span class="sub-titles">  Preferred method of payment </span><br>
+            <div  class="form-check form-check-inline">
               <input class="form-check-input" type="checkbox" id="payment1" value="option1">
               <label class="form-check-label" for="inlineCheckbox1">Fixed Quote</label>
             </div>
@@ -58,18 +61,18 @@
           <div class="form-group m20">
             <div class="row">
               <div class="col-6">
-                <label for="exampleFormControlInput1">Start Date</label>
+                <label class="sub-titles" for="exampleFormControlInput1">Start Date</label>
                 <input id="startDate" type="date" class="form-control">
               </div>
               <div class="col-6">
-                <label for="exampleFormControlInput1">End Date</label>
+                <label class="sub-titles" for="exampleFormControlInput1">End Date</label>
                 <input id="endDate" type="date" class="form-control">
               </div>
             </div>
           </div>
           <div class="form-group m20">
-            <button type="submit" class="btn btn-primary btn-sm">Post</button>
-            <button id="clearAll" type="button" class="btn btn-secondary btn-sm">Clear</button>
+            <button type="submit" class="btn btn-primary btn-sm" style="padding: 10px 35px 10px 35px ">Post</button>
+            <button id="clearAll" type="button" class="btn btn-secondary btn-sm" style="padding: 10px 35px 10px 35px; background: rgb(241, 66, 154)">Clear</button>
           </div>
         </form>
       </div>
