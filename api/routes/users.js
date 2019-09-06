@@ -3,6 +3,12 @@ const router = express.Router();
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+var Recaptcha = require('recaptcha-verify');
+
+var recaptcha = new Recaptcha({
+    secret: '6LfzyJgUAAAAAIHX3I9UXa1W-873XGdL2LYfCwV8',
+    verbose: true
+});
 
 const User = require("../models/user");
 
@@ -51,19 +57,28 @@ router.post("/signup", (req, res, next) => {
 });
 
 router.post("/login", (req, res, next) => {
+
+    var userResponse = req.query['g-recaptcha-response'];
+    console.log(userResponse);
+
     User.find({ email: req.body.email })
       .exec()
       .then(user => {
         if (user.length < 1) {
-          return res.status(401).json({
-            message: "Auth failed"
-          });
+        //   return res.status(401).json({
+        //     message: "Auth failed"
+        //   });
+        var message = "failed user";
+             res.redirect('/users/log_in/?message=' + message + '#login');
         }
-        bcrypt.compare(req.body.password, user[0].password, (err, result) => {
+        
+        bcrypt.compare(req.body.password, user[0].password, (err, result) => {//error during comparison of password process
           if (err) {
-            return res.status(401).json({
-              message: "Auth failed"
-            });
+            // return res.status(401).json({
+            //   message: "Auth failed"
+            // });
+            var message = "failed";
+             res.redirect('/users/log_in/?message=' + message + '#login');
           }
           if (result) {
             const token = jwt.sign(
@@ -75,21 +90,52 @@ router.post("/login", (req, res, next) => {
               {
                   expiresIn: "1h"
               }
-            );
-             console.log('success');
-            res.render("../views/post_a_job");
-            // return res.status(200).json({
-            //   message: "Auth successful",
-            //   token: token
-            // });
-          } else{
+            )
+            if(!userResponse){
+                var message = "robot user";
+                return  res.redirect('/users/log_in/?message=' + message + '#login');
+              }else {
+                console.log('success');
+                res.render("../views/post_a_job");
+              }
+ 
+            // recaptcha.checkResponse(userResponse, (error, response) => {
+            // if(error){
+            //     // an internal error?
+            //     res.status(401).render('400', {
+            //         message: err
+            //     });
+            // }else {
+
+            //     if(response.success){
+            //         console.log('success');
+            //         res.render("../views/post_a_job");
+            //         // return res.status(200).json({
+            //         //   message: "Auth successful",
+            //         //   token: token
+            //         // });
+            //         // save session.. create user.. save form data.. render page, return json.. etc.
+            //     }else{
+            //         var message = "robot user";
+            //         res.redirect('/users/log_in/?message=' + message + '#login');
+            //         // show warning, render page, return a json, etc.
+            //     }
+
+        //      }
+           
+        
+        // })
+    }
+             else{
             // res.status(401).json({
             //     message: "Auth failed"
             //   });
              // console.log('failed');
-             var message = "failed";
-             res.redirect('/users/log_in/?message=' + message);
+             var message = "failed password";
+             res.redirect('/users/log_in/?message=' + message + '#login');
+             
           }
+          
         });
       })
       .catch(err => {

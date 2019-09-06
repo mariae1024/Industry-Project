@@ -1,7 +1,6 @@
 const express = require('express');
 const app = express();
-//login, next function
-const morgan = require('morgan');
+const morgan = require('morgan');//login, next function
 const bodyParser = require('body-parser'); //to collect the json data
 const mongoose = require('mongoose');
 

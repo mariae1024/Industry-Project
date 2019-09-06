@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-
+        <script src="https://www.google.com/recaptcha/api.js"></script> 
 
     <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="/static/css/gradforce.css">
@@ -51,6 +51,7 @@
                 <div class="col-12">
                     <form style="display:block; margin: auto; padding: 20px" action="/users/login" method="POST">
                         <h2 style="color:black">Log In</h2><br><br>
+                        
                         <% if(message != "") { %>
                               <!-- <img class="vertical" src="/assets/img/icons/warning.png" alt=""> -->
                                 <div> 
@@ -60,14 +61,14 @@
                         <input type="text" name="email" placeholder="Email" ?><br><br>
                         <a>Password</a><br>
                         <input type="password" name="password" placeholder="Password"><br><br>
-                        <div class="form-row">
-                            <div class="form-group ml-5">
-                                <label class="col-sm-2 control-label"></label>
-                                <div class="col-sm-3">
-                                    <div class="g-recaptcha" data-sitekey="6LdN57IUAAAAAKOJYOmrjK4v_ujntLA1y6C5BJcO">
-                                    </div>
-                                </div>
-                            </div>
+                        
+                            
+                                
+                            
+                        <div class="g-recaptcha" data-sitekey="6LfzyJgUAAAAAPeuAgsLodKfOAlChhzJ43I_S6Ql">
+                                    
+                                
+                            
                         </div>
                         <br>
 
@@ -85,7 +86,8 @@
         </div>
     </div>
 
-
+    <script src="http://code.jquery.com/jquery-3.1.0.min.js"></script>
+    <script src="/magic.js"></script>
 
 
 </body>
