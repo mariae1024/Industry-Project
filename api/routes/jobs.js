@@ -2,6 +2,9 @@ const express = require("express");
 const router = express.Router();
 const mongoose = require("mongoose");
 const multer = require('multer');
+const Job = require("../models/job");
+const User = require("../models/user");
+
 
 const storage = multer.diskStorage({
     destination: function(req, file, cb) {
@@ -17,7 +20,7 @@ const storage = multer.diskStorage({
 
 const fileFilter = (req, file, cb) => {
 
-    if (file.mimetype === 'application/pdf' || file.mimetype === 'application/msword' || file.mimetype === 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' || file.mimetype === 'application/vnd.ms-excel' || file.mimetype === 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' || file.mimetype === 'application/vnd.ms-excel.sheet.macroEnabled.12') { //filefilter by type of file 
+     if (file.mimetype === 'application/pdf') {//|| file.mimetype === 'application/msword' || file.mimetype === 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' || file.mimetype === 'application/vnd.ms-excel' || file.mimetype === 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' || file.mimetype === 'application/vnd.ms-excel.sheet.macroEnabled.12') { //filefilter by type of file 
         //accept file (save into folder or database)
         cb(null, true);
     } else {
@@ -34,23 +37,23 @@ const upload = multer({
     fileFilter: fileFilter
 });
 
-const Job = require("../models/job");
-const User = require("../models/user");
+// function isLoggedIn(req, res, next) {
+//     if (req.isAuthenticated()) {
+//         return next();
+//     }
+//     res.redirect("./users/log_in/");
+// }
 
-function isLoggedIn(req, res, next) {
-    if (req.isAuthenticated()) {
-        return next();
-    }
-    res.redirect("./users/log_in/");
-}
+router.post("/postjob/:id", upload.single('uploadFile'), (req, res, next) => {
 
-router.post("/postjob/:id", isLoggedIn, upload.single('uploadFile'), (req, res, next) => {
-
+    console.log(req.file);
     let id = req.params.id;
-
-    User.findById(id)
+    console.log(req.params.id);
+        User.findById(id)
         .then(user => {
+            console.log(user);
             if (!user) {
+                console.log("user not found");
                 return res.status(404).json({
                     message: "User not found"
                 });
@@ -82,10 +85,10 @@ router.post("/postjob/:id", isLoggedIn, upload.single('uploadFile'), (req, res, 
 
                     })
             }
-
-
         })
 })
 router.get("/", (req, res) => {
     res.render("../views/post_a_job");
 })
+
+module.exports = router;

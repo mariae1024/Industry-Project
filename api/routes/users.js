@@ -76,7 +76,7 @@ router.post("/login", (req, res, next) => {
                     );
                     console.log('User: ' + user);
                     return res.render("../views/post_a_job", {
-                        user: user
+                        user: user[0]
                     });
                     // return res.status(200).json({
                     //   message: "Auth successful",

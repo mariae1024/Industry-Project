@@ -7,6 +7,7 @@ const mongoose = require('mongoose');
 
 
 const userRoutes = require('./api/routes/users');
+const jobsRoutes = require('./api/routes/jobs');
 
 app.use(morgan('dev'));
 
@@ -35,6 +36,7 @@ app.set('view engine', 'ejs');
 app.use(express.static("views"));
 
 app.use('/users', userRoutes);
+app.use('/jobs', jobsRoutes);
 
 app.use((req, res, next) => {
     const error = new Error('Not found');
