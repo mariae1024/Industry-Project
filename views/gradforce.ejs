@@ -19,19 +19,6 @@
 
     <div class="container-fluid">
         <div class="banner-area">
-            <!--Gradforce header not needed
-                                                                                            <header class="header">
-                                                                                                <nav class="navbar navbar-style">
-                                                                                                    <div class="container">
-                                                                                                        <div class="navbar-header">
-                                                                                                            <a href=""><img class="logo"></a>
-                                                                                                            <h1>GradForce</h1>
-                                                                                                        </div>
-                                                                                                    </div>
-                                                                                                </nav>
-                                                                                            </header>
-                                                                                            Gradforce header not needed-->
-
             <div class="row">
                 <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
                     <img src="/static/img/gradforce.png" class="img-fluid">
@@ -48,7 +35,7 @@
 
         <div class="banner-area2" id="login">
             <div class="row">
-                <div class="col-12">
+                <div class="col-12" style="margin-top: 40px;">
                     <form style="display:block; margin: auto; padding: 20px" action="/users/login" method="POST">
                         <h2 style="color:black">Log In</h2><br><br>
                         <% if(message != "") { %>
@@ -59,17 +46,17 @@
                         <a>Email</a><br>
                         <input type="text" name="email" placeholder="Email" ?><br><br>
                         <a>Password</a><br>
-                        <input type="password" name="password" placeholder="Password"><br><br>
+                        <input type="password" name="password" placeholder="Password"><br>
                         <div class="form-row">
-                            <div class="form-group ml-5">
+                            <div class="form-group ml-6">
                                 <label class="col-sm-2 control-label"></label>
-                                <div class="col-sm-3">
+                                <div class="col-sm-2">
                                     <div class="g-recaptcha" data-sitekey="6LdN57IUAAAAAKOJYOmrjK4v_ujntLA1y6C5BJcO">
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <br>
+                        
 
                         <input type="submit" value="Log In"><br><br>
                     <!--   <a href=""><input type="button" value="Reset"></a> <br>    --> 
@@ -84,9 +71,6 @@
             </div>
         </div>
     </div>
-
-
-
 
 </body>
 
