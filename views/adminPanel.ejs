@@ -4,7 +4,7 @@
 <head>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
     integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-  <link rel="stylesheet" href="static\css\post_a_job.css">
+  <link rel="stylesheet" href="/static/css/post_a_job.css">
 
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
     integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
@@ -83,19 +83,6 @@
 <body class="adminbackground">
   <div class="container-fluid">
     <div class="row">
-      <div class="col-12">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light float-right" ;
-          style="margin-right: 15px; background: black">
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <form class="form-inline my-2 my-lg-0">
-              <input class="form-control mr-sm-2 " type="search" placeholder="Company Name" aria-label="Search">
-              <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-            </form>
-          </div>
-        </nav>
-      </div>
-    </div>
-    <div class="row">
       <div class="col-2 divcolor mb20 adminbackground">
         <select class="adminbackground white" name="" id="job" style="width:100%">IT/BUSINESS
           <option selected>Job</option>
@@ -105,29 +92,67 @@
       </div>
 
       <div class="col-10 lightbackground">
-
+        <nav class="navbar navbar-expand-lg navbar-light bg-light float-right" ;
+          style="margin-right: 15px; background: black">
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <form class="form-inline my-2 my-lg-0">
+              <input class="form-control mr-sm-2 " type="search" placeholder="Company Name" aria-label="Search">
+              <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+          </div>
+        </nav>
         <div id="job-history" class="m30 lightbackground">
           <span class="titles" id="jobType">All Jobs</span>
           <div class="col-12">
 
             <!-- Create the for loop here -->
-            <% var companyName %>
+            <% var jobName, companyName, description, contactName, phoneNumber %>
             <% jobs.forEach(job => { %>
+            <% description = job.description %>
+            <% jobName = job.jobName %>
             <% users.forEach(user => { %>
             <%    if(job.user.equals(user._id)){ %>
             <%      companyName = user.companyName;    %>
+            <%      contactName = user.contactName;    %>
+            <%      phoneNumber = user.phoneNumber;    %>
             <%   }    %>
             <% })%>
             <div class="row divcolor mb20" id="job1">
               <div class="col-4">
                 <img class="img-fluid"
                   src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAb1BMVEUAAAD///92dnYvLy9ra2vW1ta+vr60tLSWlpbT09MbGxvs7OylpaVMTEw0NDSGhoby8vJFRUVwcHBhYWHFxcXh4eEQEBB8fHycnJysrKwsLCxaWlqKiorj4+M8PDxqamoXFxckJCRSUlKJiYkLCwt8kmj6AAAD/UlEQVR4nO3b6XqiMBSA4VCr4FLF3Vq3Wu//Ggc3PDEn0M4Ei898769qThLPo2SB1BgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOAxfC2w3RmzHBVFHPWdRvUqI/UD7PVGh8Ey7EUF0uzDj4sCLmHtgZ2lJ26j9L+b6rG9WmV4jIzlx/cEvSv9f3hia5dhJinNcD1z+48rz/C98FP/JMNomifgi/hwuu+knlDt+/47nUaRgzGzfmGEsPm8Nuqp0v90up/5GusEyxCov9KRZvjtkebkdKn5ixt2721vYLiRpnS2GPpGO92iOMOV3bs/8IHz4Q8zXBd/8KbV+eAZM4yKM4ysCcP/Iw2Y4dv8xW+0yybMUUGAa35s1N/mXC7uZgXNvAXLEHge22Y715xrEQsZIS+nTVtobj1VruVxvj5fuaV2w2FZA3eiRbRkhBwI7DXBQJRMtFEy32Cog3R1I0ywDMeiRM0wvhTq27IHZbjQIia+D2JnOPNVuepeNkb63re6DD9a8c1WixiIgJa8L9OIJVnlK9ZcknjXylrubS3g//E6bd545sNysV2l54/aTtWi6W/Oh8V75bOxXUUdS6PT/sNX9JvzYVKe4OCuikxjKrZKiWmI6d470VaYoTofLkoTdPZ0Vobz299N83J7kVpdV5fheNLKTdRnKCMRoXK/+USU9jrixWx1+3tldV3ddQjU36b0OhSXjm7lVLGuw2w0067kjXnQdfhWOpZag7rKqSbH0rWRA+htJM3W548ZS60My/eHusL50Kh3GXt3E1XNM4xe/BkebxUrN2f3D/sON0HWpS37sZ9cl7ay1x/uEvWQTbSi6wrXpUD9LRdJbuGeKMiMZIR1oCcRFr4q53F2nljBp2b2suFlRfl9Zz60dnTWoGkNjiNPldNjt/vR9HRjrp7zoT9Duc2/nw+N+bRi26f36jkf+jNsiQL3OzRNGXv+5T4ow2HazaXuCjMTy4hXWWJl2NSrpOfvy3zlb0Xnp6nZtSkbDndiz9ERlNNZxuxkxEGWWEd9lr4q9/0sG5djCwclChCCP8c/HkXQ2syfhVzbm18vuY0SHvA5/sPOYqyvPeYD7P7yxpcWXt/TJl1fhtNrj6PrG7vLG+qpmvpm2CvNcNk9v5Gf66o4w9Dn2hq+DLt5l5efab4TXGnh4c61AfUX8Jx3P1+waVXkaq5vHfneaeHhlm8Bz+qn+ca5eKQxpmttQSseacL9v0V8W41rxVPRaRKl4p7ab8+H38ywLe98lGU4tPZYT5Bhur67s1OWoenKu+MVZ/jv/7s2dm/ialWsR/xDeVR4o4VXuBMGAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAODZ/QEkI0gVjz4bHQAAAABJRU5ErkJggg=="
-                  alt="" data-toggle="modal" data-target="#ModalIBM" onmouseover=""
+                  alt="" data-toggle="modal" data-target="#<%= job._id %>" onmouseover=""
                   style="cursor: pointer; width:75%; padding: 30px;">
               </div>
               <div class="col-8">
                 <p class="mt30 sub-titles">Job Name: <span><%= job.jobName %></span></p>
                 <p class="sub-titles">Company Name: <span id="companyName1"><%= companyName %></span></p>
+              </div>
+            </div>
+
+            <!-- Modal -->
+            <div class="modal fade" id="<%= job._id%>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+              aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Job Position</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <p>Job Title: <span><%= jobName %></span></p>
+                    <p>Company Name: <span><%= companyName %></span></p>
+                    <p>Description: <span><%= description %></span></p>
+                    <p>Name of Contact: <span><%= contactName %> </span></p>
+                    <p>Phone Number: <span><%= phoneNumber %></span></p>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" style="display: block; margin:auto">Get a
+                      Quote</button>
+                  </div>
+                </div>
               </div>
             </div>
 
@@ -139,88 +164,13 @@
     </div>
   </div>
 
-  <!-- Button trigger modal -->
-  <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-    Launch demo modal
-  </button> -->
-
-  <!-- Modal -->
-  <div class="modal fade" id="ModalIBM" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Job Position</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <p>Job Title: </p><span></span>
-          <p>Company Name: <span id="companyName1">IBM</span></p>
-          <p>Description: <span id="companyName1"></span></p>
-          <p>Name of Contact: <span id="companyName1"></span></p>
-          <p>Phone Number: <span id="companyName1"></span></p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-primary" style="display: block; margin:auto">Get a Quote</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="modal fade" id="ModalSony" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Job Position</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <p>Job Title: </p><span></span>
-          <p>Company Name: <span id="companyName1">Sony </span></p>
-          <p>Description: <span id="companyName1"></span></p>
-          <p>Name of Contact: <span id="companyName1"></span></p>
-          <p>Phone Number: <span id="companyName1"></span></p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-primary" style="display: block; margin:auto">Get a Quote</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="modal fade" id="Modalms" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Job Position</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <p>Job Title: </p><span></span>
-          <p>Company Name: <span id="companyName1">Microsoft </span></p>
-          <p>Description: <span id="companyName1"></span></p>
-          <p>Name of Contact: <span id="companyName1"></span></p>
-          <p>Phone Number: <span id="companyName1"></span></p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-primary" style="display: block; margin:auto">Get a Quote</button>
-        </div>
-      </div>
-    </div>
-  </div>
+ 
 </body>
+
 
 </html>
 
-<script src="static/js/main.js"> </script>
+<script src="/static/js/main.js"> </script>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <link rel="stylesheet" href="/resources/demos/style.css">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
