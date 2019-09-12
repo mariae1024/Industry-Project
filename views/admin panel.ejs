@@ -2,11 +2,226 @@
 <html lang="en">
 
 <head>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" href="static\css\post_a_job.css">
+
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
+  </script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
+  </script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
   </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
 </head>
+<style>
+  body {
+    margin-top: 50px;
+  }
+
+  .mt30 {
+    margin-top: 30px;
+  }
+
+  .divcolor {
+
+    background: white;
+  }
+
+  .mb20 {
+    margin-bottom: 20px;
+  }
+
+  .adminbackground {
+    background: black;
+  }
+
+  .lightbackground {
+
+    background: rgb(245, 241, 241);
+  }
+
+  .bg-light {
+    background: rgb(245, 241, 241) !important;
+  }
+
+  .white {
+    color: white;
+  }
+
+  .titles {
+    font-weight: bold;
+    font-size: 24px;
+  }
+
+  .sub-titles {
+    font-weight: bold;
+    font-size: 16px;
+  }
+
+  span {
+    font-weight: 400;
+  }
+</style>
+<script>
+  $('#myModal').on('shown.bs.modal', function () {
+    $('#myInput').trigger('focus')
+  })
+</script>
+
+<body class="adminbackground">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-2 divcolor mb20 adminbackground">
+        <select class="adminbackground white" name="" id="job" style="width:100%">IT/BUSINESS
+          <option selected>Job</option>
+          <option value="IT">IT</option>
+          <option value="Business">Business</option>
+        </select>
+      </div>
+      <div class="col-10 lightbackground">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light float-right" ; style="margin-right: 15px;">
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <form class="form-inline my-2 my-lg-0">
+              <input class="form-control mr-sm-2 " type="search" placeholder="Company Name" aria-label="Search">
+              <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+          </div>
+        </nav>
+        <div id="job-history" class="m30 lightbackground">
+          <span class="titles" id="jobType">All Jobs</span>
+          <div class="col-12">
+            <!-- Create the for loop here -->
+            <div class="row divcolor mb20" id="job1">
+              <div class="col-4">
+                <img class="img-fluid"
+                  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAb1BMVEUAAAD///92dnYvLy9ra2vW1ta+vr60tLSWlpbT09MbGxvs7OylpaVMTEw0NDSGhoby8vJFRUVwcHBhYWHFxcXh4eEQEBB8fHycnJysrKwsLCxaWlqKiorj4+M8PDxqamoXFxckJCRSUlKJiYkLCwt8kmj6AAAD/UlEQVR4nO3b6XqiMBSA4VCr4FLF3Vq3Wu//Ggc3PDEn0M4Ei898769qThLPo2SB1BgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOAxfC2w3RmzHBVFHPWdRvUqI/UD7PVGh8Ey7EUF0uzDj4sCLmHtgZ2lJ26j9L+b6rG9WmV4jIzlx/cEvSv9f3hia5dhJinNcD1z+48rz/C98FP/JMNomifgi/hwuu+knlDt+/47nUaRgzGzfmGEsPm8Nuqp0v90up/5GusEyxCov9KRZvjtkebkdKn5ixt2721vYLiRpnS2GPpGO92iOMOV3bs/8IHz4Q8zXBd/8KbV+eAZM4yKM4ysCcP/Iw2Y4dv8xW+0yybMUUGAa35s1N/mXC7uZgXNvAXLEHge22Y715xrEQsZIS+nTVtobj1VruVxvj5fuaV2w2FZA3eiRbRkhBwI7DXBQJRMtFEy32Cog3R1I0ywDMeiRM0wvhTq27IHZbjQIia+D2JnOPNVuepeNkb63re6DD9a8c1WixiIgJa8L9OIJVnlK9ZcknjXylrubS3g//E6bd545sNysV2l54/aTtWi6W/Oh8V75bOxXUUdS6PT/sNX9JvzYVKe4OCuikxjKrZKiWmI6d470VaYoTofLkoTdPZ0Vobz299N83J7kVpdV5fheNLKTdRnKCMRoXK/+USU9jrixWx1+3tldV3ddQjU36b0OhSXjm7lVLGuw2w0067kjXnQdfhWOpZag7rKqSbH0rWRA+htJM3W548ZS60My/eHusL50Kh3GXt3E1XNM4xe/BkebxUrN2f3D/sON0HWpS37sZ9cl7ay1x/uEvWQTbSi6wrXpUD9LRdJbuGeKMiMZIR1oCcRFr4q53F2nljBp2b2suFlRfl9Zz60dnTWoGkNjiNPldNjt/vR9HRjrp7zoT9Duc2/nw+N+bRi26f36jkf+jNsiQL3OzRNGXv+5T4ow2HazaXuCjMTy4hXWWJl2NSrpOfvy3zlb0Xnp6nZtSkbDndiz9ERlNNZxuxkxEGWWEd9lr4q9/0sG5djCwclChCCP8c/HkXQ2syfhVzbm18vuY0SHvA5/sPOYqyvPeYD7P7yxpcWXt/TJl1fhtNrj6PrG7vLG+qpmvpm2CvNcNk9v5Gf66o4w9Dn2hq+DLt5l5efab4TXGnh4c61AfUX8Jx3P1+waVXkaq5vHfneaeHhlm8Bz+qn+ca5eKQxpmttQSseacL9v0V8W41rxVPRaRKl4p7ab8+H38ywLe98lGU4tPZYT5Bhur67s1OWoenKu+MVZ/jv/7s2dm/ialWsR/xDeVR4o4VXuBMGAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAODZ/QEkI0gVjz4bHQAAAABJRU5ErkJggg=="
+                  alt="" data-toggle="modal" data-target="#ModalIBM" onmouseover=""
+                  style="cursor: pointer; width:75%; padding: 30px;">
+              </div>
+              <div class="col-8">
+                <p class="mt30 sub-titles">Job Title: </p><span></span>
+                <p class="sub-titles">Company Name: <span id="companyName1">IBM</span></p>
+              </div>
+            </div>
+            <div class="row divcolor mb20" id="job2">
+              <div class="col-4">
+                <img class="img-fluid"
+                  src="data:image/png;base64,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"
+                  alt="" data-toggle="modal" data-target="#ModalSony" onmouseover=""
+                  style="cursor: pointer; width:75%; padding: 30px;">
+              </div>
+              <div class="col-8">
+                <p class="mt30 sub-titles">Job Title: </p><span></span>
+                <p class="sub-titles">Company Name: <span id="companyName2">Sony</span></p>
+              </div>
+            </div>
+            <div class="row divcolor mb20" id="job3">
+              <div class="col-4">
+                <img class="img-fluid" src="static\img\microsoft-logo-icon-10.jpg" alt="" data-toggle="modal"
+                  data-target="#Modalms" onmouseover="" style="cursor: pointer; width:75%; padding: 30px;">
+              </div>
+              <div class="col-8">
+                <p class="mt30 sub-titles">Job Title: </p><span></span>
+                <p class="sub-titles">Company Name: <span id="companyName2">Microsoft</span></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Button trigger modal -->
+  <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+    Launch demo modal
+  </button> -->
+
+  <!-- Modal -->
+  <div class="modal fade" id="ModalIBM" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Job Position</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>Job Title: </p><span></span>
+          <p>Company Name: <span id="companyName1">IBM</span></p>
+          <p>Description: <span id="companyName1"></span></p>
+          <p>Name of Contact: <span id="companyName1"></span></p>
+          <p>Phone Number: <span id="companyName1"></span></p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" style="display: block; margin:auto">Get a Quote</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="ModalSony" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Job Position</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>Job Title: </p><span></span>
+          <p>Company Name: <span id="companyName1">Sony </span></p>
+          <p>Description: <span id="companyName1"></span></p>
+          <p>Name of Contact: <span id="companyName1"></span></p>
+          <p>Phone Number: <span id="companyName1"></span></p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" style="display: block; margin:auto">Get a Quote</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="Modalms" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Job Position</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>Job Title: </p><span></span>
+          <p>Company Name: <span id="companyName1">Microsoft </span></p>
+          <p>Description: <span id="companyName1"></span></p>
+          <p>Name of Contact: <span id="companyName1"></span></p>
+          <p>Phone Number: <span id="companyName1"></span></p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" style="display: block; margin:auto">Get a Quote</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
+
+<script src="static/js/main.js"> </script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="/resources/demos/style.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
