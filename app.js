@@ -1,12 +1,12 @@
 const express = require('express');
 const app = express();
-//login, next function
-const morgan = require('morgan');
+const morgan = require('morgan');//login, next function
 const bodyParser = require('body-parser'); //to collect the json data
 const mongoose = require('mongoose');
 
 
 const userRoutes = require('./api/routes/users');
+const jobsRoutes = require('./api/routes/jobs');
 
 app.use(morgan('dev'));
 
@@ -35,6 +35,7 @@ app.set('view engine', 'ejs');
 app.use(express.static("views"));
 
 app.use('/users', userRoutes);
+app.use('/jobs', jobsRoutes);
 
 app.use((req, res, next) => {
     const error = new Error('Not found');
