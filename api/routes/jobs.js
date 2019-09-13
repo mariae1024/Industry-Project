@@ -70,10 +70,10 @@ router.post("/postjob/:id", upload.single('uploadFile'), (req, res, next) => {
                     .save()
                     .then(result => {
                         console.log(result);
-                        res.status(201).json({
-                            message: "New Job posted"
-                        });
-                    })
+                        res.render("../views/confirmation",{
+                            user: user
+                        })
+                        })
                     .catch(err => {
                         console.log(err);
                         res.status(500).json({
