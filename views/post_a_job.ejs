@@ -15,7 +15,7 @@
 <body class="banner-area">
   <div class="container-fluid">
     <div class="row">
-      <div class="col-8" style="margin: auto; display: block; max-width: 30%;">
+      <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6" style="margin: auto; display: block; max-width: 450px;">
           <form action="/jobs/postjob/<%= user._id %>" method="POST" enctype="multipart/form-data">
           <div class="form-group m20">
             <p>Welcome <%= user.contactName %></p>
@@ -44,15 +44,15 @@
           <div class="form-group m20">
             <span>Preferred method of payment</span><br>
             <div class="form-check form-check-inline">
-              <input class="form-check-input" type="checkbox" id="payment1" name="payment" value="option1">
+              <input class="form-check-input" type="checkbox" id="payment1" name="payment" value="Fixed">
               <label class="form-check-label" for="inlineCheckbox1">Fixed Quote</label>
             </div>
             <div class="form-check form-check-inline">
-              <input class="form-check-input" type="checkbox" id="payment2" name="payment2" value="option2">
+              <input class="form-check-input" type="checkbox" id="payment2" name="payment" value="Unit">
               <label class="form-check-label" for="inlineCheckbox2">Unit Rate</label>
             </div>
             <div class="form-check form-check-inline">
-              <input class="form-check-input" type="checkbox" id="payment3" name="payment3" value="option3">
+              <input class="form-check-input" type="checkbox" id="payment3" name="payment" value="Hourly">
               <label class="form-check-label" for="inlineCheckbox3">Hourly Rate</label>
             </div>
           </div>
@@ -69,12 +69,12 @@
             </div>
           </div>
           <div class="form-group m20">
-            <button type="submit" class="btn btn-primary btn-lg">Post</button>
-            <button id="clearAll" type="button" class="btn btn-secondary btn-lg">Clear</button>
+            <button type="submit" class="btn btn-primary btn-lg" style="padding: 10px 35px 10px 35px ">Post</button>
+            <button id="clearAll" type="button" class="btn btn-danger btn-lg" style="padding: 10px 35px 10px 35px; background: rgb(241, 66, 154)">Clear</button>
           </div>
         </form>
       </div>
-      <div class="col-4" style="margin: auto; display: block; max-width: 50%">
+      <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6" style="margin: auto; display: block; max-width: 450px">
         <div class="row">
           <div class="col-3">
             <img src="/static/img/phone.jpg" alt="">

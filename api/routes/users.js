@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 var Recaptcha = require('recaptcha-verify');
+const multer = require('multer');
 
 var recaptcha = new Recaptcha({
 secret: '6LfzyJgUAAAAAIHX3I9UXa1W-873XGdL2LYfCwV8',
@@ -12,7 +13,39 @@ verbose: false
 
 const User = require("../models/user");
 
-router.post("/signup", (req, res, next) => {
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+      cb(null, './logo/');
+  },
+  //at the end of destination we have to execute the callback
+  //into callback we pass an error 'null' and the destination where the file has to be saved
+  filename: function (req, file, cb) {
+      cb(null, file.originalname)
+
+  }
+})
+
+const fileFilter = (req, file, cb) => {
+
+  if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/png' ||  file.mimetype === 'image/jpg') { //filefilter by type of file 
+      //accept file (save into folder or database)
+      cb(null, true);
+  } else {
+      //reject a file or do not save it
+      cb(null, false);
+  }
+}
+
+const upload = multer({
+  storage: storage,
+  fileFilter: fileFilter,
+  limits: {
+      fileSize: 1024 * 1024 * 200
+  },
+  dest: './logo/'
+});
+
+router.post("/signup", upload.single('image'), (req, res, next) => {
 User.find({
 email: req.body.email
 })
@@ -36,7 +69,8 @@ password: hash,
 companyName: req.body.companyName,
 contactName: req.body.contactName,
 url: req.body.url,
-phoneNumber: req.body.phoneNumber
+phoneNumber: req.body.phoneNumber,
+image: req.file.path
 });
 user
 .save()
