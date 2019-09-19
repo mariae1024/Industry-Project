@@ -1,116 +1,266 @@
-<!DOCTYPE html>
-<html>
+                <!DOCTYPE html>
+                <html>
 
-<head>
-    <title>Quote</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
-
-    <link rel="stylesheet" href="static/css/quote2.css">
-
-
-</head>
-
-<body>
-
-    <div class="container">
-        <h1>Quote</h1>
-        <div class="row">
-            <div class="col-12">
-                <span>Job Description</span>
-                <div class="col-12">
-                    <textarea rows="4" cols="111" name="description" form="usrform"
-                        placeholder="Enter Job Description here...."></textarea>
-                </div>
-            </div>
+                <head>
+                    <meta charset="UTF-8">
+                    <title>Quote</title>
+                    <link rel="stylesheet"
+                        href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+                        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+                        crossorigin="anonymous">
 
 
-            <div class="col-3">
-            </div>
-            <div class="col-9" style="padding: 5px;">
-                <span class="col-3" style="margin-left:30%; ;">Hours</span>
-                <span class="col-3" style="margin-left: 13%;">Wage</span>
-                <span class="col-3" style="margin-left: 18%">Total</span>
-            </div>
+                    <link rel="stylesheet" href="static/css/quote.css">
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 
+                </head>
 
-            <div class="col-3">
-                <span>IT</span>
-            </div>
-            <div class="col-9">
-                <input type="number" name="hours">
-                <input type="number" name="wage">
-                <input type="number" name="total">
-            </div>
+                <body>
+                    <!-- OLD CODE
+                    <div class="container">
+                        <h1>Quote</h1>
+                        <div class="row">
+                            <div class="col-12">
+                                <span>Job Description</span>
+                                <div class="col-12">
+                                    <span rows="4" cols="111" name="description" form="usrform"
+                                        placeholder="Enter Job Description here...."></span>
+                                </div>
+                            </div>
 
 
-            <div class="col-3">
-                <span>Business</span>
-            </div>
-            <div class="col-9">
-                <input type="number" name="hours">
-                <input type="number" name="wage">
-                <input type="number" name="total">
-            </div>
-            <br><br><br><br><br>
+                            <div class="col-3">
+                            </div>
+                            <div class="col-9" style="padding: 5px;">
+                                <span class="col-3" style="margin-left:30%; ;">Hours</span>
+                                <span class="col-3" style="margin-left: 13%;">Wage</span>
+                                <span class="col-3" style="margin-left: 18%">Total</span>
+                            </div>
 
 
 
-
-            <div class="col-3">
-                <span>Management Cost</span>
-            </div>
-            <div class="col-9">
-                <input type="number" name="hours">
-                <input type="number" name="wage">
-                <input type="number" name="total">
-            </div>
-
+                            <div class="col-3">
+                                <span>IT</span>
+                            </div>
+                            <div class="col-9">
+                                <input type="number" name="hours">
+                                <input type="number" name="wage">
+                                <input type="number" name="total">
+                            </div>
 
 
-            <div class="col-3">
-            </div>
-            <div class="col-9" style="padding: 5px;">
-                <span class="col-3" style="margin-left:48%; ;">Hours Consumed</span>
-                <span class="col-3" style="margin-left: 12%">Cost</span>
-            </div>
+                            <div class="col-3">
+                                <span>Business</span>
+                            </div>
+                            <div class="col-9">
+                                <input type="number" name="hours">
+                                <input type="number" name="wage">
+                                <input type="number" name="total">
+                            </div>
+                            <br><br><br><br><br>
 
 
-            <div class="col-3">
-                <span>Overhead 50%</span>
-            </div>
-            <div class="col-9">
-                <input type="number" name="hours">
-                <input type="number" name="total">
-            </div>
 
 
-            <div class="col-3">
-                <span>GST 15%</span>
-            </div>
-            <div class="col-9">
-                <input type="number" name="total">
-            </div>
+                            <div class="col-3">
+                                <span>Management Cost</span>
+                            </div>
+                            <div class="col-9">
+                                <input type="number" name="hours">
+                                <input type="number" name="wage">
+                                <input type="number" name="total">
+                            </div>
 
 
-            <div class="col-3">
-                <span>Total</span>
-            </div>
-            <div class="col-9">
-                <input type="number" name="total">
-            </div>
+
+                            <div class="col-3">
+                            </div>
+                            <div class="col-9" style="padding: 5px;">
+                                <span class="col-3" style="margin-left:48%; ;">Hours Consumed</span>
+                                <span class="col-3" style="margin-left: 12%">Cost</span>
+                            </div>
 
 
-            <a href=""><input type="button" value="Save" style="margin-left: 730px;"></a>
-            <a href=""><input type="button" value="Send" style="margin-left: 120px;"></a>
+                            <div class="col-3">
+                                <span>Overhead 50%</span>
+                            </div>
+                            <div class="col-9">
+                                <input type="number" name="hours">
+                                <input type="number" name="total">
+                            </div>
 
 
-        </div>
-    </div>
+                            <div class="col-3">
+                                <span>GST 15%</span>
+                            </div>
+                            <div class="col-9">
+                                <input type="number" name="total">
+                            </div>
 
 
-</body>
+                            <div class="col-3">
+                                <span>Total</span>
+                            </div>
+                            <div class="col-9">
+                                <input type="number" name="total">
+                            </div>
 
-</html>
+
+                            <a href=""><input type="button" value="Save"></a>
+                            <a href=""><input type="button" value="Send"></a>
+
+
+                        </div>
+                    </div>
+               
+                -->
+
+
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-12" style="margin: auto; max-width: 100%">
+                                <form action="" method="POST" enctype="multipart/form-data" class="form">
+                                    <div class="form-group m20">
+                                        <h2>Quote</h2>
+                                    </div>
+                                    <div class="form-group m20">
+                                        <label for="exampleFormControlFile1" style="font-weight: bolder">Job Description</label>
+                                        <span rows="4" cols="111" name="description" form="usrform"
+                                            placeholder="Enter Job Description here...."></span>
+                                    </div>
+
+                                    <div class="form-group m20">
+                                        <div class="row">
+                                            <span class="col-3"></span>
+                                            <span class="col-3" style="font-weight: bolder">Hours</span>
+                                            <span class="col-3" style="font-weight: bolder">Wage</span>
+                                            <span class="col-3" style="font-weight: bolder">Total</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group m20">
+                                        <div class="row">
+                                            <div class="col-3">
+                                                <label for="exampleFormControlInput1" style="font-weight: bolder">IT</label>
+                                            </div>
+                                            <div class="col-3">
+                                                <input id="hours" type="number" class="form-control">
+                                            </div>
+                                            <div class="col-3">
+                                                <input id="wage" type="number" class="form-control">
+                                            </div>
+                                            <div class="col-3">
+                                                <input id="total" type="number" class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group m20">
+                                        <div class="row">
+                                            <div class="col-3">
+                                                <label for="exampleFormControlInput1" style="font-weight: bolder">Business</label>
+                                            </div>
+                                            <div class="col-3">
+                                                <input id="hours" type="number" class="form-control">
+                                            </div>
+                                            <div class="col-3">
+                                                <input id="wage" type="number" class="form-control">
+                                            </div>
+                                            <div class="col-3">
+                                                <input id="total" type="number" class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <br><br><br>
+
+                                    <div class="form-group m20">
+                                        <div class="row">
+                                            <div class="col-3">
+                                                <label for="exampleFormControlInput1" style="font-weight: bolder">Management Cost</label>
+                                            </div>
+                                            <div class="col-3">
+                                                <input id="hours" type="number" class="form-control">
+                                            </div>
+                                            <div class="col-3">
+                                                <input id="wage" type="number" class="form-control">
+                                            </div>
+                                            <div class="col-3">
+                                                <input id="total" type="number" class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group m20">
+                                        <div class="row">
+                                            <span class="col-3"></span>
+                                            <span class="col-3"></span>
+                                            <span class="col-3" style="font-weight: bolder">Hours Consumed</span>
+                                            <span class="col-3" style="font-weight: bolder">Cost</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group m20">
+                                        <div class="row">
+                                            <div class="col-3">
+                                                <label for="exampleFormControlInput1" style="font-weight: bolder">Overhead 50%</label>
+                                            </div>
+                                            <div class="col-3"></div>
+                                            <div class="col-3">
+                                                <!--empty space-->
+                                                <input id="wage" type="number" class="form-control">
+                                            </div>
+                                            <div class="col-3">
+                                                <input id="total" type="number" class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group m20">
+                                        <div class="row">
+                                            <div class="col-3">
+                                                <label for="exampleFormControlInput1" style="font-weight: bolder">GST 15%</label>
+                                            </div>
+                                            <div class="col-3"></div>
+                                            <div class="col-3">
+                                                <!--empty space-->
+                                            </div>
+                                            <div class="col-3">
+                                                <input id="total" type="number" class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group m20">
+                                        <div class="row">
+                                            <div class="col-3">
+                                                <label for="exampleFormControlInput1" style="font-weight: bolder">Total</label>
+                                            </div>
+                                            <div class="col-3"></div>
+                                            <div class="col-3">
+                                                <!--empty space-->
+                                            </div>
+                                            <div class="col-3">
+                                                <input id="total" type="number" class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group m20">
+                                        <button type="button" class="btn btn-primary btn-lg" style="font-weight: bolder">Save</button>
+                                        <button type="button" class="btn btn-primary btn-lg" style="font-weight: bolder">Send</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+
+
+                </body>
+
+                </html>
