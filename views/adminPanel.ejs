@@ -80,6 +80,7 @@
   })
 </script>
 
+
 <body class="adminbackground">
   <div class="container-fluid">
     <div class="row">
@@ -95,10 +96,10 @@
         <nav class="navbar navbar-expand-lg navbar-light bg-light float-right" ;
           style="margin-right: 15px; background: black">
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <form class="form-inline my-2 my-lg-0">
-              <input class="form-control mr-sm-2 " type="search" placeholder="Company Name" aria-label="Search">
-              <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-            </form>
+            
+              <input class="form-control mr-sm-2 " type="search" id="SearchItem" placeholder="Company Name" aria-label="Search">
+              
+            
           </div>
         </nav>
         <div id="job-history" class="m30 lightbackground">
@@ -200,6 +201,17 @@
 <link rel="stylesheet" href="/resources/demos/style.css">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+<script>
+  $(document).ready(function(){
+    $("#SearchItem").on("keyup", function() {
+      var value = $(this).val().toLowerCase();
+      $("#job-history .allJobs").filter(function() {
+        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)//checking the div with catch value and just showing coincidences
+      });
+    });
+  });
+  </script>
 
 
 
