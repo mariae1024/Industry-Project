@@ -105,9 +105,11 @@
           <span class="titles" id="jobType">All Jobs</span>
           <div class="col-12">
 
+
             <!-- Create the for loop here -->
-            <% var jobName, companyName, description, contactName, phoneNumber, image, payment, sdate, edate, file %>
+            <% var jobName, companyName, description, contactName, phoneNumber, image, payment, sdate, edate, file, jobType %>
             <% jobs.forEach(job => { %>
+            <% var bs = jobType %>
             <% description = job.description %>
             <% jobName = job.jobName %>
             <% payment = job.payment %>
@@ -122,62 +124,63 @@
             <%      image = user.image.slice(5);    %>
             <%   }    %>
             <% })%>
-            <div class="row divcolor mb20" id="job1">
-              <div class="col-4">
-                <img class="img-fluid"
-                  src="../<%= image %>"
-                  alt="" data-toggle="modal" data-target="#<%= job._id %>" onmouseover=""
-                  style="cursor: pointer; width:75%; padding: 30px;">
+            <div class="allJobs" data-value="<%= job.jobType %>">
+              <div class="row divcolor mb20" id="job1">
+                <div class="col-4">
+                  <img class="img-fluid"
+                    src="../<%= image %>"
+                    alt="" data-toggle="modal" data-target="#<%= job._id %>" onmouseover=""
+                    style="cursor: pointer; width:75%; padding: 30px;">
+                </div>
+                <div class="col-8">
+                  <p class="mt30 sub-titles">Job Name: <span><%= job.jobName %></span></p>
+                  <p class="sub-titles">Company Name: <span id="companyName1"><%= companyName %></span></p>
+                </div>
               </div>
-              <div class="col-8">
-                <p class="mt30 sub-titles">Job Name: <span><%= job.jobName %></span></p>
-                <p class="sub-titles">Company Name: <span id="companyName1"><%= companyName %></span></p>
-              </div>
-            </div>
-
-            <!-- Modal -->
-            <div class="modal fade" id="<%= job._id%>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-              aria-hidden="true">
-              <div class="modal-dialog modal-lg" role="document">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Job Position</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
-                  <div class="modal-body">
-                    <p>Job Title: <span><%= jobName %></span></p>
-                    <p>Company Name: <span><%= companyName %></span></p>
-                    <p>Description: <span><%= description %></span></p>
-                    <p>Name of Contact: <span><%= contactName %> </span></p>
-                    <p>Phone Number: <span><%= phoneNumber %></span></p>
-                    <p>Method of payment: <span><%= payment %></span></p>
-                    <p>Start Date: <span><%= sdate %></span></p>
-                    <p>End Date: <span><%= edate %></span></p>
-                    <form action="/admin/download" method="POST">
-                      <input type="text" value="<%= file %>" name="fileToDownload">
-                      <button type="submit">Download</button>
-                    </form>
-                  </div>
-                  <div class="modal-footer">
-                      <form action="/admin/quote" method="POST">
-                        <div class="row">
-                            <input style="display: none" value="<%= jobName %>" name="jobName">
-                            <input style="display: none" value="<%= description %>" name="description">
-                        </div>
-                        <div class="row">
-                            <button type="submit" class="btn btn-primary" style="display: block; margin:auto">Get a
-                            Quote</button>
+              <!-- Modal -->
+              <div class="modal fade" id="<%= job._id%>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-lg" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">Job Position</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <p>Job Title: <span><%= jobName %></span></p>
+                      <p>Company Name: <span><%= companyName %></span></p>
+                      <p>Description: <span><%= description %></span></p>
+                      <p>Name of Contact: <span><%= contactName %> </span></p>
+                      <p>Phone Number: <span><%= phoneNumber %></span></p>
+                      <p>Method of payment: <span><%= payment %></span></p>
+                      <p>Start Date: <span><%= sdate %></span></p>
+                      <p>End Date: <span><%= edate %></span></p>
+                      <form action="/admin/download" method="POST">
+                        <input type="text" value="<%= file %>" name="fileToDownload">
+                        <button type="submit">Download</button>
+                      </form>
+                    </div>
+                    <div class="modal-footer">
+                        <form action="/admin/quote" method="POST">
+                          <div class="row">
+                              <input style="display: none" value="<%= jobName %>" name="jobName">
+                              <input style="display: none" value="<%= description %>" name="description">
                           </div>
-                        </form>
-
-
+                          <div class="row">
+                              <button type="submit" class="btn btn-primary" style="display: block; margin:auto">Get a
+                              Quote</button>
+                            </div>
+                          </form>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
 
+
+            </div>
+            
             <% }); %>
 
           </div>

@@ -132,5 +132,4 @@ router.post("/quote", (req, res) => {
     res.render("../views/quote", { jobName: jobName, description: description });
 });
 
-
 module.exports = router;
