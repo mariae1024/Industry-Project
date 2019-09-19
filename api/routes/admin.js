@@ -114,4 +114,23 @@ router.post("/login", (req, res, next) => {
    
 });
 
+router.post("/download", (req, res) => {
+
+    let file = req.body.fileToDownload;
+    file = file.slice(8);
+    console.log(file);
+    //res.send("file: " + file)
+    res.download("./uploads/" + file);
+
+
+});
+
+router.post("/quote", (req, res) => {
+    var jobName = req.body.jobName;
+    var description = req.body.description;
+    console.log(description);
+    res.render("../views/quote", { jobName: jobName, description: description });
+});
+
+
 module.exports = router;

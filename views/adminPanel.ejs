@@ -106,16 +106,20 @@
           <div class="col-12">
 
             <!-- Create the for loop here -->
-            <% var jobName, companyName, description, contactName, phoneNumber, image %>
+            <% var jobName, companyName, description, contactName, phoneNumber, image, payment, sdate, edate, file %>
             <% jobs.forEach(job => { %>
             <% description = job.description %>
             <% jobName = job.jobName %>
+            <% payment = job.payment %>
+            <% sdate = job.startDate %>
+            <% edate = job.endDate %>
+            <% file = job.uploadFile%>
             <% users.forEach(user => { %>
             <%    if(job.user.equals(user._id)){ %>
             <%      companyName = user.companyName;    %>
             <%      contactName = user.contactName;    %>
             <%      phoneNumber = user.phoneNumber;    %>
-            <%      image = user.image;    %>
+            <%      image = user.image.slice(5);    %>
             <%   }    %>
             <% })%>
             <div class="row divcolor mb20" id="job1">
@@ -148,10 +152,27 @@
                     <p>Description: <span><%= description %></span></p>
                     <p>Name of Contact: <span><%= contactName %> </span></p>
                     <p>Phone Number: <span><%= phoneNumber %></span></p>
+                    <p>Method of payment: <span><%= payment %></span></p>
+                    <p>Start Date: <span><%= sdate %></span></p>
+                    <p>End Date: <span><%= edate %></span></p>
+                    <form action="/admin/download" method="POST">
+                      <input type="text" value="<%= file %>" name="fileToDownload">
+                      <button type="submit">Download</button>
+                    </form>
                   </div>
                   <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" style="display: block; margin:auto">Get a
-                      Quote</button>
+                      <form action="/admin/quote" method="POST">
+                        <div class="row">
+                            <input style="display: none" value="<%= jobName %>" name="jobName">
+                            <input style="display: none" value="<%= description %>" name="description">
+                        </div>
+                        <div class="row">
+                            <button type="submit" class="btn btn-primary" style="display: block; margin:auto">Get a
+                            Quote</button>
+                          </div>
+                        </form>
+
+
                   </div>
                 </div>
               </div>
@@ -176,3 +197,6 @@
 <link rel="stylesheet" href="/resources/demos/style.css">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+
+
