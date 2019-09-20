@@ -8,7 +8,9 @@ const userSchema = mongoose.Schema({
     email: { type: String, unique: true, required: true },
     password: { type: String, required: true },
     phoneNumber: { type: Number, required: true },
-    image: { type: String }
+    image: { type: String },
+    tempToken: {type: String},
+    tempTime: {type: Number}
 });
 
 module.exports = mongoose.model('User', userSchema);

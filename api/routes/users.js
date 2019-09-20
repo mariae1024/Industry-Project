@@ -5,6 +5,7 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 var Recaptcha = require('recaptcha-verify');
 const multer = require('multer');
+const crypto = require('crypto');
 
 var recaptcha = new Recaptcha({
 secret: '6LfzyJgUAAAAAIHX3I9UXa1W-873XGdL2LYfCwV8',
@@ -178,6 +179,36 @@ if (user.length < 1) { // return res.status(401).json({ // message: "Auth failed
   });
   });
 
+  router.post("/passrecovery", (req,res,next)=>{
+    User.find({
+      email: req.body.email
+      })
+      .exec()
+      .then(user => {
+        //console.log(user)
+        if(user.length == 0) {
+          var message = "User Not found";
+          res.redirect('/users/fpassword/?message=' + message + '#forgotpass');
+           
+        } else {
+          res.send("Users found");
+          //create token
+          crypto.randomBytes(20, function (err, buf) {
+          var token = buf.toString('hex');
+          console.log(token);
+          });
+          user.tempToken = token;
+          user.tempTime = Date.now() + 3600000; // 1 hour
+          
+          
+
+
+
+        }
+      })
+
+  });
+
   router.delete("/:userId", (req, res, next) => {
   User.remove({
   _id: req.params.userId
@@ -207,9 +238,10 @@ if (user.length < 1) { // return res.status(401).json({ // message: "Auth failed
 
   router.get("/fpassword", (req, res) => {
 
-    console.log("here")
-    res.render("../views/forgotPassword");
-  
+    
+    var passedVariable = req.query.message;
+    res.render("../views/forgotPassword",{
+    message: passedVariable});
     });
 
   module.exports = router;
