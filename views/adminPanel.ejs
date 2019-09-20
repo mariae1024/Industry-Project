@@ -2,168 +2,165 @@
 <html lang="en">
 
 <head>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-  <link rel="stylesheet" href="/static/css/post_a_job.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="/static/css/post_a_job.css">
 
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
-  </script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
+    </script>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
-  </script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
-  </script>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
+    </script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
 </head>
 <style>
-  body {
-    margin-top: 50px;
-  }
-
-  .mt30 {
-    margin-top: 30px;
-  }
-
-  .divcolor {
-
-    background: white;
-  }
-
-  .mb20 {
-    margin-bottom: 20px;
-  }
-
-  .adminbackground {
-    background: black;
-  }
-
-  .lightbackground {
-
-    background: rgb(245, 241, 241);
-  }
-
-  .bg-light {
-    background: rgb(245, 241, 241) !important;
-  }
-
-  .white {
-    color: white;
-  }
-
-  .titles {
-    font-weight: bold;
-    font-size: 24px;
-  }
-
-  .sub-titles {
-    font-weight: bold;
-    font-size: 16px;
-  }
-
-  span {
-    font-weight: 400;
-  }
-
-  nav {
-    background: black !important;
-  }
+    body {
+        margin-top: 50px;
+    }
+    
+    .mt30 {
+        margin-top: 30px;
+    }
+    
+    .divcolor {
+        background: white;
+    }
+    
+    .mb20 {
+        margin-bottom: 20px;
+    }
+    
+    .adminbackground {
+        background: black;
+    }
+    
+    .lightbackground {
+        background: rgb(245, 241, 241);
+    }
+    
+    .bg-light {
+        background: rgb(245, 241, 241) !important;
+    }
+    
+    .white {
+        color: white;
+    }
+    
+    .titles {
+        font-weight: bold;
+        font-size: 24px;
+    }
+    
+    .sub-titles {
+        font-weight: bold;
+        font-size: 16px;
+    }
+    
+    span {
+        font-weight: 400;
+    }
+    
+    nav {
+        background: black !important;
+    }
 </style>
 <script>
-  $('#myModal').on('shown.bs.modal', function () {
-    $('#myInput').trigger('focus')
-  })
+    $('#myModal').on('shown.bs.modal', function() {
+        $('#myInput').trigger('focus')
+    })
 </script>
 
 <body class="adminbackground">
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-12 col-sm-12 col-md-2 col-lg-2 col-xl-2 divcolor mb20 adminbackground">
-        <select class="adminbackground white" name="" id="job" style="width:100%">IT/BUSINESS
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12 col-sm-12 col-md-2 col-lg-2 col-xl-2 divcolor mb20 adminbackground">
+                <select class="adminbackground white" name="" id="job" style="width:100%">IT/BUSINESS
           <option selected>Job</option>
           <option value="IT">IT</option>
           <option value="Business">Business</option>
         </select>
-      </div>
-
-      <div class="col-12 col-sm-12 col-md-10 col-lg-10 col-xl-10 lightbackground">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light float-right" ;
-          style="margin-right: 15px; background: black">
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <form class="form-inline my-2 my-lg-0">
-              <input class="form-control mr-sm-2 " type="search" placeholder="Company Name" aria-label="Search">
-              <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-            </form>
-          </div>
-        </nav>
-        <div id="job-history" class="m30 lightbackground">
-          <span class="titles" id="jobType">All Jobs</span>
-          <div class="col-12">
-
-            <!-- Create the for loop here -->
-            <% var jobName, companyName, description, contactName, phoneNumber, image %>
-            <% jobs.forEach(job => { %>
-            <% description = job.description %>
-            <% jobName = job.jobName %>
-            <% users.forEach(user => { %>
-            <%    if(job.user.equals(user._id)){ %>
-            <%      companyName = user.companyName;    %>
-            <%      contactName = user.contactName;    %>
-            <%      phoneNumber = user.phoneNumber;    %>
-            <%      image = user.image;    %>
-            <%   }    %>
-            <% })%>
-            <div class="row divcolor mb20" id="job1">
-              <div class="col-4">
-                <img class="img-fluid"
-                  src="../<%= image %>"
-                  alt="" data-toggle="modal" data-target="#<%= job._id %>" onmouseover=""
-                  style="cursor: pointer; width:75%; padding: 30px;">
-              </div>
-              <div class="col-8">
-                <p class="mt30 sub-titles">Job Name: <span><%= job.jobName %></span></p>
-                <p class="sub-titles">Company Name: <span id="companyName1"><%= companyName %></span></p>
-              </div>
             </div>
 
-            <!-- Modal -->
-            <div class="modal fade" id="<%= job._id%>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-              aria-hidden="true">
-              <div class="modal-dialog modal-lg" role="document">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Job Position</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <div class="col-12 col-sm-12 col-md-10 col-lg-10 col-xl-10 lightbackground">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light float-right" ; style="margin-right: 15px; background: black">
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <form class="form-inline my-2 my-lg-0">
+                            <input class="form-control mr-sm-2 " type="search" placeholder="Company Name" aria-label="Search">
+                            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                        </form>
+                    </div>
+                </nav>
+                <div id="job-history" class="m30 lightbackground">
+                    <span class="titles" id="jobType">All Jobs</span>
+                    <div class="col-12">
+
+                        <!-- Create the for loop here -->
+                        <% var jobName, companyName, description, contactName, phoneNumber, image %>
+                            <% jobs.forEach(job => { %>
+                                <% description = job.description %>
+                                    <% jobName = job.jobName %>
+                                        <% users.forEach(user => { %>
+                                            <%    if(job.user.equals(user._id)){ %>
+                                                <%      companyName = user.companyName;    %>
+                                                    <%      contactName = user.contactName;    %>
+                                                        <%      phoneNumber = user.phoneNumber;    %>
+                                                            <%      image = user.image;    %>
+                                                                <%   }    %>
+                                                                    <% })%>
+                                                                        <div class="row divcolor mb20" id="job1">
+                                                                            <div class="col-4">
+                                                                                <img class="img-fluid" src="../<%= image %>" alt="" data-toggle="modal" data-target="#<%= job._id %>" onmouseover="" style="cursor: pointer; width:75%; padding: 30px;">
+                                                                            </div>
+                                                                            <div class="col-8">
+                                                                                <p class="mt30 sub-titles">Job Name: <span><%= job.jobName %></span></p>
+                                                                                <p class="sub-titles">Company Name: <span id="companyName1"><%= companyName %></span></p>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <!-- Modal -->
+                                                                        <div class="modal fade" id="<%= job._id%>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                                            <div class="modal-dialog modal-lg" role="document">
+                                                                                <div class="modal-content">
+                                                                                    <div class="modal-header">
+                                                                                        <h5 class="modal-title" id="exampleModalLabel">Job Position</h5>
+                                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                     </button>
-                  </div>
-                  <div class="modal-body">
-                    <p>Job Title: <span><%= jobName %></span></p>
-                    <p>Company Name: <span><%= companyName %></span></p>
-                    <p>Description: <span><%= description %></span></p>
-                    <p>Name of Contact: <span><%= contactName %> </span></p>
-                    <p>Phone Number: <span><%= phoneNumber %></span></p>
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" style="display: block; margin:auto">Get a
+                                                                                    </div>
+                                                                                    <div class="modal-body">
+                                                                                        <p>Job Title: <span><%= jobName %></span></p>
+                                                                                        <p>Company Name: <span><%= companyName %></span></p>
+                                                                                        <p>Description: <span><%= description %></span></p>
+                                                                                        <p>Name of Contact: <span><%= contactName %> </span></p>
+                                                                                        <p>Phone Number: <span><%= phoneNumber %></span></p>
+                                                                                    </div>
+                                                                                    <div class="modal-footer">
+                                                                                        <form action="/admin/quote" method="GET">
+                                                                                            <div class="row">
+                                                                                                <input style="display: none" value="<%= jobName %>" name="jobName">
+                                                                                                <input style="display: none" value="<%= description %>" name="description">
+                                                                                            </div>
+                                                                                            <div class="row">
+                                                                                                <button type="submit" class="btn btn-primary" style="display: block; margin:auto">Get a
                       Quote</button>
-                  </div>
+                                                                                            </div>
+                                                                                        </form>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <% }); %>
+
+                    </div>
                 </div>
-              </div>
             </div>
-
-            <% }); %>
-
-          </div>
         </div>
-      </div>
     </div>
-  </div>
 
 
 </body>
@@ -171,7 +168,8 @@
 
 </html>
 
-<script src="/static/js/main.js"> </script>
+<script src="/static/js/main.js">
+</script>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <link rel="stylesheet" href="/resources/demos/style.css">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
