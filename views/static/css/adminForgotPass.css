@@ -9,7 +9,6 @@ body{
     width: 90%;
     height: 90vh;
     background: linear-gradient(1000deg, #00c6a7, yellow);
-    clip-path: polygon(0% 0%, 100% 0%, 100% 80%, 0% 100%);   
     font-family: sans-serif;
 }
 
