@@ -205,4 +205,11 @@ if (user.length < 1) { // return res.status(401).json({ // message: "Auth failed
 
   });
 
+  router.get("/fpassword", (req, res) => {
+
+    console.log("here")
+    res.render("../views/forgotPassword");
+  
+    });
+
   module.exports = router;
