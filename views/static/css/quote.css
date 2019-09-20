@@ -65,14 +65,10 @@ input[type=button]:hover {
 .container {
     background: linear-gradient(57deg, #acb3b2, #166dc4);
     border: 5px solid black;
-    height: auto;
     width: 50%;
 
 }
 
-.m20 {
-    margin: 0px 0px 20px 10px;
-}
 
 
 
@@ -80,12 +76,13 @@ input[type=button]:hover {
 
 
 /* Responsive layout - when the screen is less than 500px wide, make the two columns stack on top of each other instead of next to each other */
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 500px) {
 
-    .container, .m20, input[type=button] {
+    .form-row, .col-3 {
         width: 100%;
-        margin-top: 0;
-      }
+    }
+}
+    
 
       /*OLD CODE BELOW = EXPAND*/
       /*
@@ -115,7 +112,7 @@ input[type=button]:hover {
         margin-top: 20px;
         padding: 10px;
     }  */
-}
+
 
 
 

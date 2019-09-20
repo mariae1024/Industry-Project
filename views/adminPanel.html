@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" href="/static/css/post_a_job.css">
+
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
+  </script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
+  </script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<style>
+  body {
+    margin-top: 50px;
+  }
+  .mt30 {
+    margin-top: 30px;
+  }
+  .divcolor {
+    background: white;
+  }
+  .mb20 {
+    margin-bottom: 20px;
+  }
+  .adminbackground {
+    background: black;
+  }
+  .lightbackground {
+    background: rgb(245, 241, 241);
+  }
+  .bg-light {
+    background: rgb(245, 241, 241) !important;
+  }
+  .white {
+    color: white;
+  }
+  .titles {
+    font-weight: bold;
+    font-size: 24px;
+  }
+  .sub-titles {
+    font-weight: bold;
+    font-size: 16px;
+  }
+  span {
+    font-weight: 400;
+  }
+  nav {
+    background: black !important;
+  }
+</style>
+<script>
+  $('#myModal').on('shown.bs.modal', function () {
+    $('#myInput').trigger('focus')
+  })
+</script>
+
+
+<body class="adminbackground">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12 col-sm-12 col-md-2 col-lg-2 col-xl-2 divcolor mb20 adminbackground">
+        <select class="adminbackground white" name="" id="job" style="width:100%">IT/BUSINESS
+          <option selected>Job</option>
+          <option value="IT">IT</option>
+          <option value="Business">Business</option>
+        </select>
+      </div>
+
+      <div class="col-12 col-sm-12 col-md-10 col-lg-10 col-xl-10 lightbackground">
+        <!-- <nav class="navbar navbar-expand-lg navbar-light bg-light float-right" ;
+          style="margin-right: 15px; background: black">
+          <div id="navbarSupportedContent"> -->
+            <div>
+              <span class="col-6 col-sm-6 col-md-10 col-lg-10 col-xl-10 titles" id="jobType">All Jobs</span>
+              <input class="col-6 col-sm-6 col-md-2 col-lg-2 col-xl-2 form-control float-right " style="margin-right: 30px;margin-top:5px" type="search" id="SearchItem" placeholder="Company Name" aria-label="Search">
+            </div>
+              
+              
+            
+          <!-- </div> -->
+        <!-- </nav> -->
+        <div id="job-history" class="m30 lightbackground">
+          
+          <div class="col-12">
+
+
+            <!-- Create the for loop here -->
+            <% var jobName, companyName, description, contactName, phoneNumber, image, payment, sdate, edate, file, jobType %>
+            <% jobs.forEach(job => { %>
+            <% var bs = jobType %>
+            <% description = job.description %>
+            <% jobName = job.jobName %>
+            <% payment = job.payment %>
+            <% sdate = job.startDate %>
+            <% edate = job.endDate %>
+            <% file = job.uploadFile%>
+            <% users.forEach(user => { %>
+            <%    if(job.user.equals(user._id)){ %>
+            <%      companyName = user.companyName;    %>
+            <%      contactName = user.contactName;    %>
+            <%      phoneNumber = user.phoneNumber;    %>
+            <%      image = user.image.slice(5);    %>
+            <%   }    %>
+            <% })%>
+            <div class="allJobs" data-value="<%= job.jobType %>">
+              <div class="row divcolor mb20" id="job1">
+                <div class="col-12 col-sm-4 col-md-4 col-lg-4 col-xl-4">
+                  <img class="img-fluid"
+                    src="../<%= image %>"
+                    alt="" data-toggle="modal" data-target="#<%= job._id %>" onmouseover=""
+                    style="cursor: pointer;max-width: 200px;max-height: 250px;; padding: 30px;">
+                </div>
+                <div class="col-12 col-sm-8 col-md-8 col-lg-8 col-xl-8">
+                  <p class="mt30 sub-titles">Job Name: <span><%= job.jobName %></span></p>
+                  <p class="sub-titles">Company Name: <span id="companyName1"><%= companyName %></span></p>
+                  <p class="sub-titles">Status of Quote: <span id="">Something</span></p>
+                </div>
+              </div>
+              <!-- Modal -->
+              <div class="modal fade" id="<%= job._id%>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-lg" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">Job Position</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <p>Job Title: <span><%= jobName %></span></p>
+                      <p>Company Name: <span><%= companyName %></span></p>
+                      <p>Description: <span><%= description %></span></p>
+                      <p>Name of Contact: <span><%= contactName %> </span></p>
+                      <p>Phone Number: <span><%= phoneNumber %></span></p>
+                      <p>Method of payment: <span><%= payment %></span></p>
+                      <p>Start Date: <span><%= sdate %></span></p>
+                      <p>End Date: <span><%= edate %></span></p>
+                      <form action="/admin/download" method="POST">
+                        <input type="text" value="<%= file %>" name="fileToDownload">
+                        <button type="submit">Download</button>
+                      </form>
+                    </div>
+                    <div class="modal-footer">
+                        <form action="/admin/quote" method="POST">
+                          <div class="row">
+                              <input style="display: none" value="<%= jobName %>" name="jobName">
+                              <input style="display: none" value="<%= description %>" name="description">
+                          </div>
+                          <div class="row">
+                              <button type="submit" class="btn btn-primary" style="display: block; margin:auto">Get a
+                              Quote</button>
+                            </div>
+                          </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <% }); %>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</body>
+
+
+</html>
+
+<script src="/static/js/main.js"> </script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="/resources/demos/style.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+<script>
+  $(document).ready(function(){
+    $("#SearchItem").on("keyup", function() {
+      var value = $(this).val().toLowerCase();
+      $("#job-history .allJobs").filter(function() {
+        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)//checking the div with catch value and just showing coincidences
+      });
+    });
+  });
+  </script>
