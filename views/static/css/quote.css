@@ -1,7 +1,8 @@
+/*
 .container {
     background: linear-gradient(57deg, #acb3b2, #166dc4);
     border: 5px solid black;
-    height: 120vh;
+    height: 100vh;
     position: relative;
     margin-top: 20px;
     margin-bottom: 20px;
@@ -38,11 +39,80 @@ input[type=button] {
     cursor: pointer;
     text-align: center;
     font-weight: bold;
-
 }
 
 input[type=button]:hover {
     background: #000;
     color: white;
 }
+
+
+ Responsive layout - when the screen is less than 500px wide, make the two columns stack on top of each other instead of next to each other 
+@media screen and (max-width: 500px) {
+
+    .container, .col-12, .col-3, .col-9,
+    input[type=button] {
+        width: auto;
+        height: auto;
+    }
+}
+
+*/
+
+
+
+
+.container {
+    background: linear-gradient(57deg, #acb3b2, #166dc4);
+    border: 5px solid black;
+    width: 50%;
+
+}
+
+
+
+
+
+
+
+/* Responsive layout - when the screen is less than 500px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 500px) {
+
+    .form-row, .col-3 {
+        width: 100%;
+    }
+}
+    
+
+      /*OLD CODE BELOW = EXPAND*/
+      /*
+    .container {
+        flex-direction: column;
+        max-width: 300px;
+        height: auto;
+        margin-top: 50px;
+    }
+
+    .container .form {
+        width: 100%;
+        padding: 20px 35px 0;
+    }
+
+    .container .form .h2 {
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+
+    .form .input {
+        margin-bottom: 10px;
+    }
+
+
+    .button {
+        margin-top: 20px;
+        padding: 10px;
+    }  */
+
+
+
 

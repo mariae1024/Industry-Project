@@ -7,6 +7,11 @@ var Recaptcha = require('recaptcha-verify');
 const multer = require('multer');
 const crypto = require('crypto');
 
+
+//gradforce.co.nz@gmail.com
+//Aspire2gf
+
+
 var recaptcha = new Recaptcha({
 secret: '6LfzyJgUAAAAAIHX3I9UXa1W-873XGdL2LYfCwV8',
 verbose: false
@@ -71,7 +76,8 @@ companyName: req.body.companyName,
 contactName: req.body.contactName,
 url: req.body.url,
 phoneNumber: req.body.phoneNumber,
-image: req.file.path
+image: req.file.path,
+
 });
 user
 .save()
@@ -104,8 +110,11 @@ email: req.body.email
 .exec()
 .then(user => {
 
-if (user.length < 1) { // return res.status(401).json({ // message: "Auth failed" // }); var message="failed user" ;
-  res.redirect('/users/log_in/?message=' + message + '#login' ); } bcrypt.compare(req.body.password, user[0].password,
+if (user.length < 1) { // return res.status(401).json({ // message: "Auth failed" // }); 
+  var message="failed user" ;
+  res.redirect('/users/log_in/?message=' + message + '#login' );
+ } 
+ bcrypt.compare(req.body.password, user[0].password,
   (err, result)=> { //error during comparison of password process
   if (err) {
   // return res.status(401).json({
@@ -117,12 +126,11 @@ if (user.length < 1) { // return res.status(401).json({ // message: "Auth failed
   if (result) {
   const token = jwt.sign({
         email: user[0].email,
-  userId: user[0]._id
+        userId: user[0]._id
   },
   process.env.JWT_KEY, {
   expiresIn: "1h"
-  }
-  )
+  })
   if (!userResponse) {
   var message = "robot user";
   return res.redirect('/users/log_in/?message=' + message + '#login');
@@ -180,7 +188,7 @@ if (user.length < 1) { // return res.status(401).json({ // message: "Auth failed
   });
 
   router.post("/passrecovery", (req,res,next)=>{
-    User.find({
+    async.waterfall[(User.find({
       email: req.body.email
       })
       .exec()
@@ -193,20 +201,23 @@ if (user.length < 1) { // return res.status(401).json({ // message: "Auth failed
         } else {
           res.send("Users found");
           //create token
+          var token;
           crypto.randomBytes(20, function (err, buf) {
-          var token = buf.toString('hex');
-          console.log(token);
+          token = buf.toString('hex');
+         
           });
           user.tempToken = token;
           user.tempTime = Date.now() + 3600000; // 1 hour
           
-          
-
+      
+          user.save(function (err) {
+            done(err, token, user);
+          });
 
 
         }
       })
-
+    )]
   });
 
   router.delete("/:userId", (req, res, next) => {
