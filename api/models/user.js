@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 
+
 const userSchema = mongoose.Schema({
     _id: mongoose.Schema.Types.ObjectId,
     companyName: { type: String, required: true },
@@ -10,7 +11,8 @@ const userSchema = mongoose.Schema({
     phoneNumber: { type: Number, required: true },
     image: { type: String },
     tempToken: {type: String},
-    tempTime: {type: Number}
+    tempTime: {type: Date}
 });
+
 
 module.exports = mongoose.model('User', userSchema);

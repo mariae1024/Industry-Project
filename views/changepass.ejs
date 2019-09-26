@@ -11,14 +11,14 @@
 </head>
 
 <body>
-    <div class="container" id="forgotpass">
+    <div class="container" >
         
             <div class="row">
                 <div class="col">
-                <form action="/users/passrecovery" method="POST">
-                    <div class="form-group form-row jumbotron col-md-6 col-sm-12" style="margin: 50px auto;">
+                <form action="/users/reset/<%= token %>" method="POST">
+                    <div class="form-row jumbotron col-md-6 col-sm-12" style="margin: 50px auto;">
                         <div class="title col-12">
-                            <h3>Please enter your email below to retrieve your password</h3>
+                            <h3>Please fill the information to reset your password</h3><br>
                         </div>
                         
                                 <% if(message != "") { %>
@@ -26,19 +26,14 @@
                                 <div style="margin: auto;margin-bottom: 5px;margin-top: 5px;color: red;">
                                     <%= message %></div>
                                 <% } %>
-                        <div class="email col-12">
-                            <input class="form-control" type="text" id="mail" name="email" placeholder="Enter your email here...">
+                        <div class="form-group col-12">
+                            <input class="form-control" type="password" id="newpass" name="password" placeholder="Enter your new password here...">
+                        </div><br>
+                        <div class="form-group col-12">
+                            <input class="form-control" type="password" id="verifypass" name="confirm" placeholder="VERIFY your new password here...">
                         </div>
                         <input class="btn btn-primary" style="margin: auto; margin-top: 10px;" type="submit" value="Submit">
-                        <div class="col-12 form-row">
-                        <% if(success != "") { %>
-                            <!-- <img class="vertical" src="/assets/img/icons/warning.png" alt=""> -->
-                            <div style="margin: auto;margin-bottom: 5px;margin-top: 15px;color: green;font-size: 20px;font-weight: bold;">
-                                <%= success %></div>
-                            <% } %>
-                        </div>
                     </div>
-                    
                 </form>
                 </div>
             </div>

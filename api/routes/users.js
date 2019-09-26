@@ -5,7 +5,10 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 var Recaptcha = require('recaptcha-verify');
 const multer = require('multer');
-const crypto = require('crypto');
+//for email
+var crypto = require('crypto');
+var async = require("async");
+const nodemailer = require("nodemailer");
 
 
 //gradforce.co.nz@gmail.com
@@ -188,37 +191,183 @@ if (user.length < 1) { // return res.status(401).json({ // message: "Auth failed
   });
 
   router.post("/passrecovery", (req,res,next)=>{
-    async.waterfall[(User.find({
-      email: req.body.email
-      })
-      .exec()
-      .then(user => {
-        //console.log(user)
-        if(user.length == 0) {
-          var message = "User Not found";
-          res.redirect('/users/fpassword/?message=' + message + '#forgotpass');
-           
-        } else {
-          res.send("Users found");
-          //create token
-          var token;
-          crypto.randomBytes(20, function (err, buf) {
-          token = buf.toString('hex');
-         
-          });
+    async.waterfall([
+      function (done) {
+        crypto.randomBytes(20, function (err, buf) {
+          var token = buf.toString('hex');
+          //console.log(token);
+          done(err, token);
+        });
+      },
+      function (token, done) {
+        User.findOne({
+          email: req.body.email
+        }, function (err, user) {
+          if (!user) {
+            var message = "The email doesn't exist. Please try again";
+            return res.redirect('/users/fpassword/?message=' + message + '#forgotpass');
+          }
           user.tempToken = token;
           user.tempTime = Date.now() + 3600000; // 1 hour
-          
-      
+          //res.send("Users found");
           user.save(function (err) {
             done(err, token, user);
           });
+        });
+      },
+      function (token, user, done) {
+        var smtpTransport = nodemailer.createTransport({
+          host: 'smtp.gmail.com',
+          port: 465,
+          secure: true, // use SSL
+          auth: {
+            user: 'gradforce.co.nz@gmail.com',
+            pass: 'Aspire2gf'
+          }
+        });
+        var mailOptions = {
+          to: user.email,
+          from: '"GradForce" <gradforce.co.nz@gmail.com>',
+          subject: 'GradForce Password Reset',
+          // text: 'Hi'
+          text: 'Hi ' + user.email + ', \n\n' + 'You are receiving this because you have requested the reset of the password for your account.\n\n' +
+            'Please click on the following link, or paste this into your browser to complete the process:\n\n' +
+            'http://' + req.headers.host + '/users/reset/' + token + '\n\n' +
+            'If you did not request this, please ignore this email and your password will remain unchanged.\n\n' +
+            'Thanks, \n' +
+            'GradForce Team'
+        };
+        smtpTransport.sendMail(mailOptions, function (err) {
+          console.log('mail sent');
+          //req.flash('success', 'An e-mail has been sent to ' + user.email + ' with further instructions.');
+          done(err, 'done');
+        });
+      }
+    ], 
+    function (err) {
+      if (err) return next(err);
+      var success = "We sent you an email with the instructions";
+      return res.redirect('/users/fpassword/?success=' + success + '#forgotpass');
+    }
+    );
+    });
 
-
+    router.get('/reset/:token', function (req, res) {
+      User.findOne({
+        tempToken: req.params.token,
+        tempTime: {
+          $gt: Date.now()
         }
-      })
-    )]
-  });
+      }, function (err, user) {
+        if (!user) {
+          //passwords do not match
+        }
+        res.render("../views/changepass", {
+          token: req.params.token,
+          message: null
+        });
+      });
+    });
+
+    router.post('/reset/:token', function (req, res) {
+      async.waterfall([
+        function (done) {
+          User.findOne({
+            tempToken: req.params.token,
+            tempTime: {
+              $gt: Date.now()
+            }
+          }, function (err, user) {
+            if (!user) {
+              //req.flash("failure", "Token expired. Come back to Forget Password");
+              var message = "Token expired. Come back to Forget Password";
+              return res.render('../views/changepass', { 
+                message: message,
+                token:req.params.token});
+              //res.send('Token expired');
+              //return res.redirect('back');
+            }
+            //console.log(user);
+            if (req.body.password === req.body.confirm) {
+              //user.password = req.body.newpass;
+              bcrypt.hash(req.body.password, 10, (err, hash) => {
+                if (err) {
+                return res.status(500).json({
+                error: err
+                });
+                } else {
+                user.password= hash;
+                user.tempToken = undefined;
+                user.tempTime = undefined;
+                user.save(function (err) {
+                  done(err, user);
+                  //console.log(user);
+                  const token = jwt.sign({
+                    email: user.email,
+                    userId: user._id
+                    },
+                    process.env.JWT_KEY, {
+                    expiresIn: "1h"
+                    })
+                    console.log('success');
+                    res.render("../views/post_a_job", {
+                    user: user
+                    });
+              
+                  // req.logIn(user, function (err) {
+                  //   done(err, user);
+                  // });
+                
+                });
+              }
+              })
+            } else {
+              //passwords do not match
+              //req.flash("failure", "The passwords do not match. Try again");
+              //res.send('password dont match');
+              //return res.redirect('back');
+              var message = "Password doesn't match";
+              return res.render('../views/changepass', { 
+                message: message,
+                token:req.params.token});
+            }
+          });
+        },
+        function (user, done) {
+          var smtpTransport = nodemailer.createTransport({
+            host: 'smtp.gmail.com',
+            port: 465,
+            secure: true, // use SSL
+            auth: {
+              user: 'gradforce.co.nz@gmail.com',
+              pass: 'Aspire2gf'
+            }
+          });
+          var mailOptions = {
+            to: user.email,
+            from: 'gradforce.co.nz@gmail.com',
+            subject: 'Your password has been changed',
+            text: 'Hi there,\n\n' +
+              'This is a confirmation that the password for your account ' + user.email + ' has just been changed.\n\n' +
+              'Thanks, \n' +
+              'GradForce Team'
+          };
+          smtpTransport.sendMail(mailOptions, function (err) {
+            done(err);
+          });
+        }
+      ], 
+      function (err) {
+        res.render("../views/post_a_job", {
+          user: user
+          });
+      }
+      );
+    });
+    
+
+
+   
 
   router.delete("/:userId", (req, res, next) => {
   User.remove({
@@ -251,8 +400,13 @@ if (user.length < 1) { // return res.status(401).json({ // message: "Auth failed
 
     
     var passedVariable = req.query.message;
+    var passedVariable2 = req.query.success;
     res.render("../views/forgotPassword",{
-    message: passedVariable});
+    message: passedVariable,
+    success: passedVariable2
+  });
     });
+
+   
 
   module.exports = router;
