@@ -132,4 +132,77 @@ router.post("/quote", (req, res) => {
     res.render("../views/quote", { jobName: jobName, description: description });
 });
 
+router.get("/fpassword", (req, res) => {
+
+    
+    var passedVariable = req.query.message;
+    var passedVariable2 = req.query.success;
+    res.render("../views/adminForgotPass",{
+    message: passedVariable,
+    success: passedVariable2
+  });
+});
+
+router.post("/passrecovery", (req,res,next)=>{
+    async.waterfall([
+      function (done) {
+        crypto.randomBytes(20, function (err, buf) {
+          var token = buf.toString('hex');
+          //console.log(token);
+          done(err, token);
+        });
+      },
+      function (token, done) {
+        User.findOne({
+          email: req.body.email
+        }, function (err, user) {
+          if (!user) {
+            var message = "The email doesn't exist. Please try again";
+            return res.redirect('/admin/fpassword/?message=' + message + '#forgotpass');
+          }
+          user.tempToken = token;
+          user.tempTime = Date.now() + 3600000; // 1 hour
+          //res.send("Users found");
+          user.save(function (err) {
+            done(err, token, user);
+          });
+        });
+      },
+      function (token, user, done) {
+        var smtpTransport = nodemailer.createTransport({
+          host: 'smtp.gmail.com',
+          port: 465,
+          secure: true, // use SSL
+          auth: {
+            user: 'gradforce.co.nz@gmail.com',
+            pass: 'Aspire2gf'
+          }
+        });
+        var mailOptions = {
+          to: user.email,
+          from: '"GradForce" <gradforce.co.nz@gmail.com>',
+          subject: 'GradForce Password Reset',
+          // text: 'Hi'
+          text: 'Hi ' + user.email + ', \n\n' + 'You are receiving this because you have requested the reset of the password for your account.\n\n' +
+            'Please click on the following link, or paste this into your browser to complete the process:\n\n' +
+            'http://' + req.headers.host + '/users/reset/' + token + '\n\n' +
+            'If you did not request this, please ignore this email and your password will remain unchanged.\n\n' +
+            'Thanks, \n' +
+            'GradForce Team'
+        };
+        smtpTransport.sendMail(mailOptions, function (err) {
+          console.log('mail sent');
+          //req.flash('success', 'An e-mail has been sent to ' + user.email + ' with further instructions.');
+          done(err, 'done');
+        });
+      }
+    ], 
+    function (err) {
+      if (err) return next(err);
+      var success = "We sent you an email with the instructions";
+      return res.redirect('/admin/fpassword/?success=' + success + '#forgotpass');
+    }
+    );
+    });
+
 module.exports = router;
