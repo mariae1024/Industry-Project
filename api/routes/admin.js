@@ -284,7 +284,7 @@ router.post("/passrecovery", (req,res,next)=>{
                             })
                         })
                     })
-                    console.log(users);
+                    //console.log(users);
                 
                     // req.logIn(user, function (err) {
                     //   done(err, user);
