@@ -233,8 +233,7 @@ router.post("/passrecovery", (req,res,next)=>{
         async.waterfall([
           function (done) {
               
-            const jobs = Job.find();
-            const users = User.find();
+            
             Admin.findOne({
               tempToken: req.params.token,
               tempTime: {
@@ -273,10 +272,19 @@ router.post("/passrecovery", (req,res,next)=>{
                       expiresIn: "1h"
                       })
                       console.log('success');
-                    //   console.log(jobs[0]);
-                      res.render("../views/adminPanel", {
-                        admin: admin, users: users, jobs: jobs
-                      });
+                    //   
+                    Job.find({},(err,jobs)=>{
+                        User.find({},(err,users)=>{
+                    
+                            res.render("../views/adminPanel", {
+                                admin: admin,
+                                jobs: jobs,
+                                users: users
+                                
+                            })
+                        })
+                    })
+                    console.log(users);
                 
                     // req.logIn(user, function (err) {
                     //   done(err, user);
@@ -291,7 +299,7 @@ router.post("/passrecovery", (req,res,next)=>{
                 //res.send('password dont match');
                 //return res.redirect('back');
                 var message = "Password doesn't match";
-                return res.render('../views/changepass', { 
+                return res.render('../views/changepassAdmin', { 
                   message: message,
                   token:req.params.token});
               }
