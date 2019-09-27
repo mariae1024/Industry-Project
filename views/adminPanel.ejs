@@ -119,6 +119,7 @@
             <% payment = job.payment %>
             <% sdate = job.startDate %>
             <% edate = job.endDate %>
+            <% status = job.status %>
             <% file = job.uploadFile%>
             <% users.forEach(user => { %>
             <%    if(job.user.equals(user._id)){ %>
@@ -139,7 +140,7 @@
                 <div class="col-12 col-sm-8 col-md-8 col-lg-8 col-xl-8">
                   <p class="mt30 sub-titles">Job Name: <span><%= job.jobName %></span></p>
                   <p class="sub-titles">Company Name: <span id="companyname1"><%= companyName %></span></p>
-                  <p class="sub-titles">Status of Quote: <span id="">(needed,saved,sent)</span></p>
+                  <p class="sub-titles">Status of Quote: <span id=""><%= job.status %></span></p>
                 </div>
               </div>
               <!-- Modal -->
