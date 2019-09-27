@@ -15,7 +15,7 @@
 
         <div class="row">
             <div class="col">
-                <form action="">
+                <form action="/admin/passrecovery" method="POST">
                     <div class="form-group form-row jumbotron col-md-6 col-sm-12" style="margin:150px 350px;">
                         <div class="title col-12">
                             <h3>Please enter your email below to retrieve your password</h3>
@@ -34,7 +34,7 @@
                             <div class="col-12 form-row">
                                     <% if(success != "") { %>
                                         <!-- <img class="vertical" src="/assets/img/icons/warning.png" alt=""> -->
-                                        <div style="margin: auto;margin-bottom: 5px;margin-top: 15px;color: green;font-size: 20px;font-weight: bold;">
+                                        <div style="margin: auto;margin-bottom: 5px;margin-top: 15px;color: rgb(4, 144, 98);font-size: 20px;font-weight: bold;">
                                             <%= success %></div>
                                         <% } %>
                             </div>
