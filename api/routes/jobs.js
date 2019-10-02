@@ -64,7 +64,8 @@ router.post("/postjob/:id", upload.single('uploadFile'), (req, res, next) => {
                     uploadFile: req.file.path,
                     payment: req.body.payment,
                     startDate: req.body.startDate,
-                    endDate: req.body.endDate
+                    endDate: req.body.endDate,
+                    status: req.body.status
                 });
                 job
                     .save()

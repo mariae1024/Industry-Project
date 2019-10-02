@@ -35,7 +35,11 @@ app.use((req, res, next) => {
 
 app.set('view engine', 'ejs');
 app.use(express.static("views"));
+
 app.use(express.static("uploads"));
+
+app.use(express.static("logo"));
+
 
 app.use('/users', userRoutes);
 app.use('/jobs', jobsRoutes);
