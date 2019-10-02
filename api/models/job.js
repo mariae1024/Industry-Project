@@ -10,7 +10,8 @@ const jobSchema = mongoose.Schema({
     endDate: { type: Date, required: true },
     uploadFile: { type: String },
     internalQuote: { type: String },
-    user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' }
+    user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+    status: { type: String, required: true }
 });
 
 module.exports = mongoose.model('Job', jobSchema);

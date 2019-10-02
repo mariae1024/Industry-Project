@@ -103,58 +103,68 @@
                             <% jobs.forEach(job => { %>
                                 <% description = job.description %>
                                     <% jobName = job.jobName %>
-                                        <% users.forEach(user => { %>
-                                            <%    if(job.user.equals(user._id)){ %>
-                                                <%      companyName = user.companyName;    %>
-                                                    <%      contactName = user.contactName;    %>
-                                                        <%      phoneNumber = user.phoneNumber;    %>
-                                                            <%      image = user.image;    %>
-                                                                <%   }    %>
-                                                                    <% })%>
-                                                                        <div class="row divcolor mb20" id="job1">
-                                                                            <div class="col-4">
-                                                                                <img class="img-fluid" src="../<%= image %>" alt="" data-toggle="modal" data-target="#<%= job._id %>" onmouseover="" style="cursor: pointer; width:75%; padding: 30px;">
-                                                                            </div>
-                                                                            <div class="col-8">
-                                                                                <p class="mt30 sub-titles">Job Name: <span><%= job.jobName %></span></p>
-                                                                                <p class="sub-titles">Company Name: <span id="companyName1"><%= companyName %></span></p>
-                                                                            </div>
-                                                                        </div>
-
-                                                                        <!-- Modal -->
-                                                                        <div class="modal fade" id="<%= job._id%>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                                            <div class="modal-dialog modal-lg" role="document">
-                                                                                <div class="modal-content">
-                                                                                    <div class="modal-header">
-                                                                                        <h5 class="modal-title" id="exampleModalLabel">Job Position</h5>
-                                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
+                                        <% jobId = job._id %>
+                                            <% users.forEach(user => { %>
+                                                <%    if(job.user.equals(user._id)){ %>
+                                                    <%      companyName = user.companyName;    %>
+                                                        <%      contactName = user.contactName;    %>
+                                                            <%      phoneNumber = user.phoneNumber;    %>
+                                                                <%      image = user.image;    %>
+                                                                    <%     jobEmail = user.email;    %>
+                                                                        <%   }    %>
+                                                                            <% })%>
+                                                                                <div class="row divcolor mb20" id="job1">
+                                                                                    <div class="col-4">
+                                                                                        <img class="img-fluid" src="../<%= image %>" alt="" data-toggle="modal" data-target="#<%= job._id %>" onmouseover="" style="cursor: pointer; width:75%; padding: 30px;">
                                                                                     </div>
-                                                                                    <div class="modal-body">
-                                                                                        <p>Job Title: <span><%= jobName %></span></p>
-                                                                                        <p>Company Name: <span><%= companyName %></span></p>
-                                                                                        <p>Description: <span><%= description %></span></p>
-                                                                                        <p>Name of Contact: <span><%= contactName %> </span></p>
-                                                                                        <p>Phone Number: <span><%= phoneNumber %></span></p>
-                                                                                    </div>
-                                                                                    <div class="modal-footer">
-                                                                                        <form action="/admin/quote" method="GET">
-                                                                                            <div class="row">
-                                                                                                <input style="display: none" value="<%= jobName %>" name="jobName">
-                                                                                                <input style="display: none" value="<%= description %>" name="description">
-                                                                                            </div>
-                                                                                            <div class="row">
-                                                                                                <button type="submit" class="btn btn-primary" style="display: block; margin:auto">Get a
-                      Quote</button>
-                                                                                            </div>
-                                                                                        </form>
+                                                                                    <div class="col-8">
+                                                                                        <p class="mt30 sub-titles">Job Name: <span><%= job.jobName %></span></p>
+                                                                                        <p class="sub-titles">Company Name: <span id="companyName1"><%= companyName %></span></p>
                                                                                     </div>
                                                                                 </div>
-                                                                            </div>
-                                                                        </div>
 
-                                                                        <% }); %>
+                                                                                <!-- Modal -->
+                                                                                <div class="modal fade" id="<%= job._id%>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                                                    <div class="modal-dialog modal-lg" role="document">
+                                                                                        <div class="modal-content">
+                                                                                            <div class="modal-header">
+                                                                                                <h5 class="modal-title" id="exampleModalLabel">Job Position</h5>
+                                                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                                                                                            </div>
+                                                                                            <div class="modal-body">
+                                                                                                <p>Job Title: <span><%= jobName %></span></p>
+                                                                                                <p>Company Name: <span><%= companyName %></span></p>
+                                                                                                <p>Description: <span><%= description %></span></p>
+                                                                                                <p>Name of Contact: <span><%= contactName %> </span></p>
+                                                                                                <p>Phone Number: <span><%= phoneNumber %></span></p>
+                                                                                            </div>
+                                                                                            <div class="modal-footer">
+                                                                                                <form action="/admin/quote1" method="GET">
+                                                                                                    <div class="row">
+                                                                                                        <input style="display: none" value="<%= jobName %>" name="jobName">
+                                                                                                        <input style="display: none" value="<%= jobId %>" name="jobId">
+                                                                                                        <input style="display: none" value="<%= description %>" name="description">
+                                                                                                        <input style="display: none" value="<%= companyName %>" name="companyName">
+                                                                                                        <input style="display: none" value="<%= contactName %>" name="contactName">
+                                                                                                        <input style="display: none" value="<%= phoneNumber %>" name="phoneNumber">
+                                                                                                        <input style="display: none" value="<%= jobEmail %>" name="jobEmail">
+                                                                                                        <input style="display: none" value="<%= jobs %>" name="jobs">
+                                                                                                        <input style="display: none" value="<%= users %>" name="users">
+                                                                                                        <input style="display: none" value="<%= admin %>" name="admin">
+                                                                                                    </div>
+                                                                                                    <div class="row">
+                                                                                                        <button type="submit" class="btn btn-primary" style="display: block; margin:auto">Get a
+                      Quote</button>
+                                                                                                    </div>
+                                                                                                </form>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <% }); %>
 
                     </div>
                 </div>
