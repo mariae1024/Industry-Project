@@ -154,11 +154,11 @@ input[type=password] {
 
 }
 
-input[type=button] {
+input[type=submit] {
     border: none;
     width: 100px;
     background: white;
-    color: #000;
+    color: rgb(0, 0, 0);
     font-size: 16px;
     line-height: 25px;
     padding: 10px 0;
@@ -166,8 +166,8 @@ input[type=button] {
     cursor: pointer;
 }
 
-input[type=button]:hover {
-    background: #000;
+input[type=submit]:hover {
+    background: rgb(7, 0, 68);
     color: white;
 }
 

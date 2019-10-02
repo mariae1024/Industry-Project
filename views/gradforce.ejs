@@ -8,7 +8,9 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-        <script src="https://www.google.com/recaptcha/api.js"></script> 
+
+    <script src="https://www.google.com/recaptcha/api.js"></script>
+
 
     <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="/static/css/gradforce.css">
@@ -19,19 +21,6 @@
 
     <div class="container-fluid">
         <div class="banner-area">
-            <!--Gradforce header not needed
-                                                                                            <header class="header">
-                                                                                                <nav class="navbar navbar-style">
-                                                                                                    <div class="container">
-                                                                                                        <div class="navbar-header">
-                                                                                                            <a href=""><img class="logo"></a>
-                                                                                                            <h1>GradForce</h1>
-                                                                                                        </div>
-                                                                                                    </div>
-                                                                                                </nav>
-                                                                                            </header>
-                                                                                            Gradforce header not needed-->
-
             <div class="row">
                 <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
                     <img src="/static/img/gradforce.png" class="img-fluid">
@@ -51,36 +40,40 @@
                 <div class="col-12">
                     <form style="display:block; margin: auto; padding: 20px" action="/users/login" method="POST">
                         <h2 style="color:black">Log In</h2><br><br>
-                        
+
+
+
                         <% if(message != "") { %>
-                              <!-- <img class="vertical" src="/assets/img/icons/warning.png" alt=""> -->
-                                <div> 
-                                <%= message %></div>
-                            <% } %>   <br>
+                        <!-- <img class="vertical" src="/assets/img/icons/warning.png" alt=""> -->
+                        <div>
+                            <%= message %></div>
+                        <% } %> <br>
                         <a>Email</a><br>
                         <input type="text" name="email" placeholder="Email" ?><br><br>
                         <a>Password</a><br>
                         <input type="password" name="password" placeholder="Password"><br><br>
-                        
-                            
-                                
-                            
+
+
+
+
+
                         <div class="g-recaptcha" data-sitekey="6LfzyJgUAAAAAPeuAgsLodKfOAlChhzJ43I_S6Ql">
-                                    
-                                
-                            
+
+
+
+
                         </div>
                         <br>
 
                         <input type="submit" value="Log In"><br><br>
-                    <!--   <a href=""><input type="button" value="Reset"></a> <br>    --> 
-
-                        <a href="#"
-                            style="margin-right:0px; font-size:13px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Forgot
-                            Password?</a> <br>
-
+                        
+                        <a 
+                        style="margin-right:0px; font-size:13px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;" href="/users/fpassword">Forgot
+                        Password?</a><br>
                         <input type="checkbox" name="checkbox"><a>Remember Me</a>
                     </form>
+
+                    
                 </div>
             </div>
         </div>
