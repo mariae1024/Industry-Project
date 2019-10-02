@@ -2,6 +2,9 @@
 <html lang="en">
 
 <head>
+
+
+
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
     integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <link rel="stylesheet" href="/static/css/post_a_job.css">
@@ -20,76 +23,76 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>All Jobs</title>
+
 </head>
 <style>
-  body {
-    margin-top: 50px;
-  }
-
-  .mt30 {
-    margin-top: 30px;
-  }
-
-  .divcolor {
-
-    background: white;
-  }
-
-  .mb20 {
-    margin-bottom: 20px;
-  }
-
-  .adminbackground {
-    background: black;
-  }
-
-  .lightbackground {
-
-    background: rgb(245, 241, 241);
-  }
-
-  .bg-light {
-    background: rgb(245, 241, 241) !important;
-  }
-
-  .white {
-    color: white;
-  }
-
-  .titles {
-    font-weight: bold;
-    font-size: 24px;
-  }
-
-  .sub-titles {
-    font-weight: bold;
-    font-size: 16px;
-  }
-
-  span {
-    font-weight: 400;
-  }
-
-  nav {
-    background: black !important;
-  }
+    body {
+        margin-top: 50px;
+    }
+    
+    .mt30 {
+        margin-top: 30px;
+    }
+    
+    .divcolor {
+        background: white;
+    }
+    
+    .mb20 {
+        margin-bottom: 20px;
+    }
+    
+    .adminbackground {
+        background: black;
+    }
+    
+    .lightbackground {
+        background: rgb(245, 241, 241);
+    }
+    
+    .bg-light {
+        background: rgb(245, 241, 241) !important;
+    }
+    
+    .white {
+        color: white;
+    }
+    
+    .titles {
+        font-weight: bold;
+        font-size: 24px;
+    }
+    
+    .sub-titles {
+        font-weight: bold;
+        font-size: 16px;
+    }
+    
+    span {
+        font-weight: 400;
+    }
+    
+    nav {
+        background: black !important;
+    }
 </style>
 <script>
-  $('#myModal').on('shown.bs.modal', function () {
-    $('#myInput').trigger('focus')
-  })
+    $('#myModal').on('shown.bs.modal', function() {
+        $('#myInput').trigger('focus')
+    })
 </script>
 
 
 <body class="adminbackground">
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-12 col-sm-12 col-md-2 col-lg-2 col-xl-2 divcolor mb20 adminbackground">
-        <select class="adminbackground white" name="" id="job" style="width:100%">IT/BUSINESS
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12 col-sm-12 col-md-2 col-lg-2 col-xl-2 divcolor mb20 adminbackground">
+                <select class="adminbackground white" name="" id="job" style="width:100%">IT/BUSINESS
           <option selected>Job</option>
           <option value="IT">IT</option>
           <option value="Business">Business</option>
         </select>
+
       </div>
 
       <div class="col-12 col-sm-12 col-md-10 col-lg-10 col-xl-10 lightbackground">
@@ -173,6 +176,15 @@
                           <div class="row">
                               <input style="display: none" value="<%= jobName %>" name="jobName">
                               <input style="display: none" value="<%= description %>" name="description">
+                               <input style="display: none" value="<%= jobId %>" name="jobId">
+                                                                           
+                                                                                                        <input style="display: none" value="<%= companyName %>" name="companyName">
+                                                                                                        <input style="display: none" value="<%= contactName %>" name="contactName">
+                                                                                                        <input style="display: none" value="<%= phoneNumber %>" name="phoneNumber">
+                                                                                                        <input style="display: none" value="<%= jobEmail %>" name="jobEmail">
+                                                                                                        <input style="display: none" value="<%= jobs %>" name="jobs">
+                                                                                                        <input style="display: none" value="<%= users %>" name="users">
+                                                                                                        <input style="display: none" value="<%= admin %>" name="admin">
                           </div>
                           <div class="row">
                               <button type="submit" class="btn btn-primary" style="display: block; margin:auto">Get a
@@ -189,11 +201,12 @@
             
             <% }); %>
 
-          </div>
+
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
 
 
 </body>
@@ -201,7 +214,8 @@
 
 </html>
 
-<script src="/static/js/main.js"> </script>
+<script src="/static/js/main.js">
+</script>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <link rel="stylesheet" href="/resources/demos/style.css">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
