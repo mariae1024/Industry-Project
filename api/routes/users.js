@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 var Recaptcha = require('recaptcha-verify');
+
 const multer = require('multer');
 //for email
 var crypto = require('crypto');
@@ -18,6 +19,7 @@ const nodemailer = require("nodemailer");
 var recaptcha = new Recaptcha({
 secret: '6LfzyJgUAAAAAIHX3I9UXa1W-873XGdL2LYfCwV8',
 verbose: false
+
 });
 
 const User = require("../models/user");
@@ -213,6 +215,7 @@ if (user.length < 1) { // return res.status(401).json({ // message: "Auth failed
           user.save(function (err) {
             done(err, token, user);
           });
+
         });
       },
       function (token, user, done) {
