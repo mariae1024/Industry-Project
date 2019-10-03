@@ -135,12 +135,12 @@ router.get("/quote1", (req, res) => {
     var contactName = req.query.contactName;
     var phoneNumber = req.query.phoneNumber;
     var jobEmail = req.query.jobEmail;
-  //  var users = req.query.users;
+    //  var users = req.query.users;
     //var jobs = req.query.jobs;
     //var admin = req.query.admin;
     console.log(description);
     var message = "";
-    res.render("../views/quote", { message, jobId: jobId, jobName: jobName, description: description, companyName: companyName, contactName: contactName, phoneNumber: phoneNumber, jobEmail: jobEmail});
+    res.render("../views/quote", { message, jobId: jobId, jobName: jobName, description: description, companyName: companyName, contactName: contactName, phoneNumber: phoneNumber, jobEmail: jobEmail });
 });
 
 
@@ -343,25 +343,13 @@ router.post("/quote", (req, res) => {
                         });
                 });
 
-                Job.find().then((jobs) => {
-                    console.log(jobs);
-                    User.find()
-                        .exec()
-                        .then((users) => {
-                            Admin.find()
-                                .exec()
-                                .then((admin) => {
-                                    res.render("../views/adminPanel", {
-                                       // admin: admin,
-                                        //jobs: jobs,
-                                        //users: users
-                                    });
 
-                                })
+                res.redirect("alljobs");
 
-                        })
 
-                });
+
+
+
             }
         }
     );
@@ -376,9 +364,7 @@ function smallDelay() {
 
 router.post("/quote2", (req, res) => {
 
-    var users = req.body.users;
-    var jobs = req.body.jobs;
-    var admin = req.body.admin;
+
     var today = new Date();
     console.log("Company name:" + req.body.companyName + "\nContactName: " + req.body.contactName);
     var date = today.getDate() + '/' + (today.getMonth() + 1) + '/' + today.getFullYear();
@@ -485,6 +471,7 @@ router.post("/quote2", (req, res) => {
     var companyName = req.body.companyName;
     var contactName = req.body.contactName;
     var phoneNumber = req.body.phoneNumber;
+    var jobEmail = req.body.jobEmail;
 
     const message = "The internal qoute was created successfully!";
 
@@ -502,7 +489,29 @@ router.post("/quote2", (req, res) => {
             });
     });
 
-    res.render("../views/quote", { message, jobId: jobId, jobName, description, companyName, contactName, phoneNumber, jobs: jobs, users: users, admin: admin })
+    res.render("../views/quote", { message, jobId: jobId, jobName, description, companyName, contactName, phoneNumber, jobEmail })
+});
+
+router.get("/alljobs", (req, res) => {
+    Job.find().then((jobs) => {
+        console.log(jobs);
+        User.find()
+            .exec()
+            .then((users) => {
+                Admin.find()
+                    .exec()
+                    .then((admin) => {
+                        res.render("../views/adminPanel", {
+                            admin: admin,
+                            jobs: jobs,
+                            users: users
+                        });
+
+                    })
+
+            })
+
+    });
 });
 
 router.post("/download", (req, res) => {
@@ -520,202 +529,209 @@ router.post("/download", (req, res) => {
 
 router.get("/fpassword", (req, res) => {
 
-    
+
     var passedVariable = req.query.message;
     var passedVariable2 = req.query.success;
-    res.render("../views/adminForgotPass",{
-    message: passedVariable,
-    success: passedVariable2
-  });
+    res.render("../views/adminForgotPass", {
+        message: passedVariable,
+        success: passedVariable2
+    });
 });
 
-router.post("/passrecovery", (req,res,next)=>{
+router.post("/passrecovery", (req, res, next) => {
     async.waterfall([
-      function (done) {
-        crypto.randomBytes(20, function (err, buf) {
-          var token = buf.toString('hex');
-          //console.log(token);
-          done(err, token);
-        });
-      },
-      function (token, done) {
-        Admin.findOne({
-          email: req.body.email
-        }, function (err, admin) {
-          if (!admin) {
-            var message = "The email doesn't exist. Please try again";
-            return res.redirect('/admin/fpassword/?message=' + message + '#forgotpass');
-          }
-          admin.tempToken = token;
-          admin.tempTime = Date.now() + 3600000; // 1 hour
-          //res.send("Users found");
-          admin.save(function (err) {
-            done(err, token, admin);
-          });
-        });
-      },
-      function (token, admin, done) {
-        var smtpTransport = nodemailer.createTransport({
-          host: 'smtp.gmail.com',
-          port: 465,
-          secure: true, // use SSL
-          auth: {
-            user: 'gradforce.co.nz@gmail.com',
-            pass: 'Aspire2gf'
-          }
-        });
-        var mailOptions = {
-          to: admin.email,
-          from: '"GradForce" <gradforce.co.nz@gmail.com>',
-          subject: 'GradForce Password Reset',
-          // text: 'Hi'
-          text: 'Hi ' + admin.email + ', \n\n' + 'You are receiving this because you have requested the reset of the password for your account.\n\n' +
-            'Please click on the following link, or paste this into your browser to complete the process:\n\n' +
-            'http://' + req.headers.host + '/admin/reset/' + token + '\n\n' +
-            'If you did not request this, please ignore this email and your password will remain unchanged.\n\n' +
-            'Thanks, \n' +
-            'GradForce Team'
-        };
-        smtpTransport.sendMail(mailOptions, function (err) {
-          console.log('mail sent');
-          //req.flash('success', 'An e-mail has been sent to ' + user.email + ' with further instructions.');
-          done(err, 'done');
-        });
-      }
-    ], 
-    function (err) {
-      if (err) return next(err);
-      var success = "We sent you an email with the instructions";
-      return res.redirect('/admin/fpassword/?success=' + success + '#forgotpass');
-    }
+            function(done) {
+                crypto.randomBytes(20, function(err, buf) {
+                    var token = buf.toString('hex');
+                    //console.log(token);
+                    done(err, token);
+                });
+            },
+            function(token, done) {
+                Admin.findOne({
+                    email: req.body.email
+                }, function(err, admin) {
+                    if (!admin) {
+                        var message = "The email doesn't exist. Please try again";
+                        return res.redirect('/admin/fpassword/?message=' + message + '#forgotpass');
+                    }
+                    admin.tempToken = token;
+                    admin.tempTime = Date.now() + 3600000; // 1 hour
+                    //res.send("Users found");
+                    admin.save(function(err) {
+                        done(err, token, admin);
+                    });
+                });
+            },
+            function(token, admin, done) {
+                var smtpTransport = nodemailer.createTransport({
+                    host: 'smtp.gmail.com',
+                    port: 465,
+                    secure: true, // use SSL
+                    auth: {
+                        user: 'gradforce.co.nz@gmail.com',
+                        pass: 'Aspire2gf'
+                    }
+                });
+                var mailOptions = {
+                    to: admin.email,
+                    from: '"GradForce" <gradforce.co.nz@gmail.com>',
+                    subject: 'GradForce Password Reset',
+                    // text: 'Hi'
+                    text: 'Hi ' + admin.email + ', \n\n' + 'You are receiving this because you have requested the reset of the password for your account.\n\n' +
+                        'Please click on the following link, or paste this into your browser to complete the process:\n\n' +
+                        'http://' + req.headers.host + '/admin/reset/' + token + '\n\n' +
+                        'If you did not request this, please ignore this email and your password will remain unchanged.\n\n' +
+                        'Thanks, \n' +
+                        'GradForce Team'
+                };
+                smtpTransport.sendMail(mailOptions, function(err) {
+                    console.log('mail sent');
+                    //req.flash('success', 'An e-mail has been sent to ' + user.email + ' with further instructions.');
+                    done(err, 'done');
+                });
+            }
+        ],
+        function(err) {
+            if (err) return next(err);
+            var success = "We sent you an email with the instructions";
+            return res.redirect('/admin/fpassword/?success=' + success + '#forgotpass');
+        }
     );
-    });
+});
 
-    router.get('/reset/:token', function (req, res) {
-        Admin.findOne({
-          tempToken: req.params.token,
-          tempTime: {
+router.get('/reset/:token', function(req, res) {
+    Admin.findOne({
+        tempToken: req.params.token,
+        tempTime: {
             $gt: Date.now()
-          }
-        }, function (err, admin) {
-          if (!admin) {
+        }
+    }, function(err, admin) {
+        if (!admin) {
             //passwords do not match
-          }
-          res.render("../views/changepassAdmin", {
+        }
+        res.render("../views/changepassAdmin", {
             token: req.params.token,
             message: null
-          });
         });
-      });
+    });
+});
 
-      router.post('/reset/:token', function (req, res) {
+router.post('/reset/:token', function(req, res) {
 
 
-        async.waterfall([
-          function (done) {
-              
-            
-            Admin.findOne({
-              tempToken: req.params.token,
-              tempTime: {
-                $gt: Date.now()
-              }
-            }, function (err, admin) {
-              if (!admin) {
-                //req.flash("failure", "Token expired. Come back to Forget Password");
-                var message = "Token expired. Come back to Forget Password";
-                return res.render('../views/changepassAdmin', { 
-                  message: message,
-                  token:req.params.token});
-                //res.send('Token expired');
-                //return res.redirect('back');
-              }
-              //console.log(user);
-              if (req.body.password === req.body.confirm) {
-                //user.password = req.body.newpass;
-                bcrypt.hash(req.body.password, 10, (err, hash) => {
-                  if (err) {
-                  return res.status(500).json({
-                  error: err
-                  });
-                  } else {
-                  admin.password= hash;
-                  admin.tempToken = undefined;
-                  admin.tempTime = undefined;
-                  admin.save(function (err) {
-                    done(err, admin);
+    async.waterfall([
+            function(done) {
+
+
+                Admin.findOne({
+                    tempToken: req.params.token,
+                    tempTime: {
+                        $gt: Date.now()
+                    }
+                }, function(err, admin) {
+                    if (!admin) {
+                        //req.flash("failure", "Token expired. Come back to Forget Password");
+                        var message = "Token expired. Come back to Forget Password";
+                        return res.render('../views/changepassAdmin', {
+                            message: message,
+                            token: req.params.token
+                        });
+                        //res.send('Token expired');
+                        //return res.redirect('back');
+                    }
                     //console.log(user);
-                    const token = jwt.sign({
-                      email: admin.email,
-                      userId: admin._id
-                      },
-                      process.env.JWT_KEY, {
-                      expiresIn: "1h"
-                      })
-                      console.log('success');
-                    //   
-                    Job.find({},(err,jobs)=>{
-                        User.find({},(err,users)=>{
-                    
-                            res.render("../views/adminPanel", {
-                                admin: admin,
-                                jobs: jobs,
-                                users: users
-                                
-                            })
+                    if (req.body.password === req.body.confirm) {
+                        //user.password = req.body.newpass;
+                        bcrypt.hash(req.body.password, 10, (err, hash) => {
+                            if (err) {
+                                return res.status(500).json({
+                                    error: err
+                                });
+                            } else {
+                                admin.password = hash;
+                                admin.tempToken = undefined;
+                                admin.tempTime = undefined;
+                                admin.save(function(err) {
+                                    done(err, admin);
+                                    //console.log(user);
+                                    const token = jwt.sign({
+                                            email: admin.email,
+                                            userId: admin._id
+                                        },
+                                        process.env.JWT_KEY, {
+                                            expiresIn: "1h"
+                                        })
+                                    console.log('success');
+                                    //   
+                                    Job.find({}, (err, jobs) => {
+                                            User.find({}, (err, users) => {
+
+                                                res.render("../views/adminPanel", {
+                                                    admin: admin,
+                                                    jobs: jobs,
+                                                    users: users
+
+                                                })
+                                            })
+                                        })
+                                        //console.log(users);
+
+                                    // req.logIn(user, function (err) {
+                                    //   done(err, user);
+                                    // });
+
+                                });
+                            }
                         })
-                    })
-                    //console.log(users);
-                
-                    // req.logIn(user, function (err) {
-                    //   done(err, user);
-                    // });
-                  
-                  });
-                }
-                })
-              } else {
-                //passwords do not match
-                //req.flash("failure", "The passwords do not match. Try again");
-                //res.send('password dont match');
-                //return res.redirect('back');
-                var message = "Password doesn't match";
-                return res.render('../views/changepassAdmin', { 
-                  message: message,
-                  token:req.params.token});
-              }
-            });
-          },
-          function (admin, done) {
-            var smtpTransport = nodemailer.createTransport({
-              host: 'smtp.gmail.com',
-              port: 465,
-              secure: true, // use SSL
-              auth: {
-                user: 'gradforce.co.nz@gmail.com',
-                pass: 'Aspire2gf'
-              }
-            });
-            var mailOptions = {
-              to: admin.email,
-              from: 'gradforce.co.nz@gmail.com',
-              subject: 'Your password has been changed',
-              text: 'Hi there,\n\n' +
-                'This is a confirmation that the password for your account ' + admin.email + ' has just been changed.\n\n' +
-                'Thanks, \n' +
-                'GradForce Team'
-            };
-            smtpTransport.sendMail(mailOptions, function (err) {
-              done(err);
-            });
-          }
-        ], 
-        function (err) {
-          res.render("../views/adminPanel", {
-            admin: admin, users: users, jobs: jobs
+                    } else {
+                        //passwords do not match
+                        //req.flash("failure", "The passwords do not match. Try again");
+                        //res.send('password dont match');
+                        //return res.redirect('back');
+                        var message = "Password doesn't match";
+                        return res.render('../views/changepassAdmin', {
+                            message: message,
+                            token: req.params.token
+                        });
+                    }
+                });
+            },
+            function(admin, done) {
+                var smtpTransport = nodemailer.createTransport({
+                    host: 'smtp.gmail.com',
+                    port: 465,
+                    secure: true, // use SSL
+                    auth: {
+                        user: 'gradforce.co.nz@gmail.com',
+                        pass: 'Aspire2gf'
+                    }
+                });
+                var mailOptions = {
+                    to: admin.email,
+                    from: 'gradforce.co.nz@gmail.com',
+                    subject: 'Your password has been changed',
+                    text: 'Hi there,\n\n' +
+                        'This is a confirmation that the password for your account ' + admin.email + ' has just been changed.\n\n' +
+                        'Thanks, \n' +
+                        'GradForce Team'
+                };
+                smtpTransport.sendMail(mailOptions, function(err) {
+                    done(err);
+                });
+            }
+        ],
+        function(err) {
+            res.render("../views/adminPanel", {
+                admin: admin,
+                users: users,
+                jobs: jobs
             });
         }
-        );
-      });
+    );
+});
 
+router.get("/logout", (req, res) => {
+    res.redirect("log_in");
+});
 module.exports = router;
