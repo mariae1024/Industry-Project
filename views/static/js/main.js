@@ -69,10 +69,10 @@
 
     } else {
       $("#jobType").text("All Jobs");
-      $('#companyname1').each(function(){
+      $('.allJobs').each(function(){
         $(this).css("display", "block");
       })
-  
+
     }
   })
 

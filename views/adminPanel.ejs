@@ -101,7 +101,7 @@
           <div id="navbarSupportedContent"> -->
             <div>
               <span class="col-6 col-sm-6 col-md-6 col-lg-10 col-xl-10 titles" id="jobType">All Jobs</span>
-              <input class="col-6 col-sm-6 col-md-6 col-lg-2 col-xl-2 form-control float-right " style="margin-right: 30px;margin-top:5px" type="search" id="SearchItem" placeholder="Company Name" aria-label="Search">
+              <input class="col-6 col-sm-6 col-md-6 col-lg-2 col-xl-2 form-control float-right " style="margin-right: 30px;margin-top:5px" type="search" id="SearchItem" placeholder="Search" aria-label="Search">
             </div>
               
               
@@ -114,10 +114,11 @@
 
 
             <!-- Create the for loop here -->
-            <% var jobName, companyName, description, contactName, phoneNumber, image, payment, sdate, edate, file, jobType %>
+            <% var jobName, jobId,jobEmail, companyName, description, contactName, phoneNumber, image, payment, sdate, edate, file, jobType %>
             <% jobs.forEach(job => { %>
             <% var bs = jobType %>
             <% description = job.description %>
+            <% jobId = job.jobId %>
             <% jobName = job.jobName %>
             <% payment = job.payment %>
             <% sdate = job.startDate %>
@@ -129,6 +130,7 @@
             <%      companyName = user.companyName;    %>
             <%      contactName = user.contactName;    %>
             <%      phoneNumber = user.phoneNumber;    %>
+            <%      jobEmail = user.email %>
             <%      image = user.image.slice(5);    %>
             <%   }    %>
             <% })%>
@@ -172,7 +174,7 @@
                       </form>
                     </div>
                     <div class="modal-footer">
-                        <form action="/admin/quote" method="POST">
+                        <form action="/admin/quote1" method="GET">
                           <div class="row">
                               <input style="display: none" value="<%= jobName %>" name="jobName">
                               <input style="display: none" value="<%= description %>" name="description">
@@ -182,9 +184,7 @@
                                                                                                         <input style="display: none" value="<%= contactName %>" name="contactName">
                                                                                                         <input style="display: none" value="<%= phoneNumber %>" name="phoneNumber">
                                                                                                         <input style="display: none" value="<%= jobEmail %>" name="jobEmail">
-                                                                                                        <input style="display: none" value="<%= jobs %>" name="jobs">
-                                                                                                        <input style="display: none" value="<%= users %>" name="users">
-                                                                                                        <input style="display: none" value="<%= admin %>" name="admin">
+                                                                                                      
                           </div>
                           <div class="row">
                               <button type="submit" class="btn btn-primary" style="display: block; margin:auto">Get a

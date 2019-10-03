@@ -135,12 +135,12 @@ router.get("/quote1", (req, res) => {
     var contactName = req.query.contactName;
     var phoneNumber = req.query.phoneNumber;
     var jobEmail = req.query.jobEmail;
-    var users = req.query.users;
-    var jobs = req.query.jobs;
-    var admin = req.query.admin;
+  //  var users = req.query.users;
+    //var jobs = req.query.jobs;
+    //var admin = req.query.admin;
     console.log(description);
     var message = "";
-    res.render("../views/quote", { message, jobId: jobId, jobName: jobName, description: description, companyName: companyName, contactName: contactName, phoneNumber: phoneNumber, jobEmail: jobEmail, users: users, jobs: jobs, admin: admin });
+    res.render("../views/quote", { message, jobId: jobId, jobName: jobName, description: description, companyName: companyName, contactName: contactName, phoneNumber: phoneNumber, jobEmail: jobEmail});
 });
 
 
@@ -352,9 +352,9 @@ router.post("/quote", (req, res) => {
                                 .exec()
                                 .then((admin) => {
                                     res.render("../views/adminPanel", {
-                                        admin: admin,
-                                        jobs: jobs,
-                                        users: users
+                                       // admin: admin,
+                                        //jobs: jobs,
+                                        //users: users
                                     });
 
                                 })
@@ -516,12 +516,7 @@ router.post("/download", (req, res) => {
 
 });
 
-router.post("/quote", (req, res) => {
-    var jobName = req.body.jobName;
-    var description = req.body.description;
-    console.log(description);
-    res.render("../views/quote", { jobName: jobName, description: description });
-});
+
 
 router.get("/fpassword", (req, res) => {
 
