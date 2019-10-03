@@ -7,7 +7,7 @@
     $('#description').val("");
     $("#payment1").prop("checked", false);
     $("#payment2").prop("checked", false);
-    $("#payment3").prop("checked", false);3
+    $("#payment3").prop("checked", false);
     $("#options").val("Select");
     $("#startDate").val("");
     $("#endDate").val("");

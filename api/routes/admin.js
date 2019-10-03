@@ -7,10 +7,10 @@ const Admin = require("../models/admin");
 const Job = require("../models/job");
 const User = require("../models/user");
 const officegen = require("officegen");
-const nodemailer = require("nodemailer");
+
 const fs = require("fs");
 var url = require('url');
-const async = require('async');
+
 const delay = ms => new Promise(res => setTimeout(res, ms))
 
 
