@@ -152,6 +152,7 @@ router.post("/quote", (req, res) => {
     var admin = req.body.admin;
     var jobEmail = req.body.jobEmail;
     var jobId = req.body.jobId;
+    var description = req.body.description;
     var myEmail = "gradforce.co.nz@gmail.com";
     var today = new Date();
     // console.log("Company name:" + req.body.companyName + "\nContactName: " + req.body.contactName);
@@ -187,7 +188,7 @@ router.post("/quote", (req, res) => {
                 //debugger;
                 let pObj = docx.createP()
 
-                pObj.addText('Gradforce                                                        Quotation', { font_face: 'Calibri(Body)', font_size: 20, color: 'a3a3a3', bold: true });
+                pObj.addText('Gradforce                                                      Quotation', { font_face: 'Calibri(Body)', font_size: 20, color: 'a3a3a3', bold: true });
 
 
                 pObj = docx.createP();
@@ -197,6 +198,7 @@ router.post("/quote", (req, res) => {
                 pObj.addText('Auckland 0632', { font_face: 'Calibri(Body)', font_size: 11, color: '000000', bold: true });
                 pObj.addLineBreak()
                 pObj.addText('Phone  09*******0', { font_face: 'Calibri(Body)', font_size: 11, color: '000000', bold: true })
+
 
                 pObj = docx.createP()
                 pObj.addText('Quotation For', { font_face: 'Calibri(Body)', font_size: 12, color: '000000', bold: true })
@@ -208,51 +210,12 @@ router.post("/quote", (req, res) => {
                 pObj.addText('Company name: ' + req.body.companyName, { font_face: 'Calibri(Body)', font_size: 12, color: '000000', bold: true })
                 pObj.addLineBreak()
                 pObj.addText('Phone number: ' + req.body.phoneNumber, { font_face: 'Calibri(Body)', font_size: 12, color: '000000', bold: true })
+                pObj.addLineBreak()
+                pObj.addText('Job description: ' + description, { font_face: 'Calibri(Body)', font_size: 11, color: '000000', bold: true })
 
-                var table = [
-                    [{
-                        val: " ",
-                        opts: {
-                            b: true
-
-                        }
-                    }, {
-                        val: "HOURS",
-                        opts: {
-                            b: true
-
-                        }
-                    }, {
-                        val: "WAGE",
-                        opts: {
-                            b: true
-
-                        }
-                    }, {
-                        val: "TOTAL",
-                        opts: {
-                            b: true
-
-                        }
-                    }],
-                    ['IT', req.body.hoursIT, req.body.wageIT, req.body.totalIT],
-                    ['BUSINESS', req.body.hoursB, req.body.wageB, req.body.totalB],
-                    ['MANAGEMENT COST', req.body.hoursM, req.body.wageM, req.body.totalM],
-                    [' ', 'HOURS CONSUMED', ' ', 'COST'],
-                    ['OVERHEAD 50%', req.body.hoursO, ' ', req.body.totalO],
-                    ['GST 15%', ' ', ' ', req.body.totalGST],
-                    [' ', ' ', 'TOTAL COST:', req.body.total],
-                ]
-
-                var tableStyle = {
-                    tableColWidth: 4261,
-                    tableAlign: "center",
-                    tableFontFamily: "Calibri(Body)",
-                    borders: true
-                }
-
-                docx.createTable(table, tableStyle);
-                // Let's generate the Word document into a file:
+                pObj = docx.createP()
+                pObj.addText('Total cost: $' + req.body.total, { font_face: 'Calibri(Body)', font_size: 11, color: '000000', bold: true })
+                    // Let's generate the Word document into a file:
 
                 let out = fs.createWriteStream('./uploads/' + req.body.jobName + '_external_qoute.docx');
                 console.log("BLAH");
@@ -389,7 +352,7 @@ router.post("/quote2", (req, res) => {
     //debugger;
     let pObj = docx.createP()
 
-    pObj.addText('Gradforce                                                              Quotation', { font_face: 'Calibri(Body)', font_size: 20, color: 'a3a3a3', bold: true });
+    pObj.addText('Gradforce                                                      Quotation', { font_face: 'Calibri(Body)', font_size: 20, color: 'a3a3a3', bold: true });
 
 
     pObj = docx.createP();
