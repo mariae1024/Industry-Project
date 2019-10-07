@@ -1,3 +1,4 @@
+//JOB MODEL
 const mongoose = require('mongoose');
 
 const jobSchema = mongoose.Schema({
@@ -14,4 +15,4 @@ const jobSchema = mongoose.Schema({
     status: { type: String, required: true }
 });
 
-module.exports = mongoose.model('Job', jobSchema);
+module.exports = mongoose.model('Job', jobSchema); 

@@ -1,3 +1,4 @@
+//USER MODEL
 const mongoose = require('mongoose');
 
 
@@ -10,8 +11,8 @@ const userSchema = mongoose.Schema({
     password: { type: String, required: true },
     phoneNumber: { type: Number, required: true },
     image: { type: String },
-    tempToken: {type: String},
-    tempTime: {type: Date}
+    tempToken: { type: String },
+    tempTime: { type: Date }
 });
 
 
