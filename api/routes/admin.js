@@ -211,13 +211,13 @@ router.post("/quote", (req, res) => {
                 pObj.addLineBreak()
                 pObj.addText('Phone number: ' + req.body.phoneNumber, { font_face: 'Calibri(Body)', font_size: 12, color: '000000', bold: true })
                 pObj.addLineBreak()
-                pObj.addText('Job description: ' + description, { font_face: 'Calibri(Body)', font_size: 11, color: '000000', bold: true })
+                pObj.addText('Job description: ' + description, { font_face: 'Calibri(Body)', font_size: 12, color: '000000', bold: true })
 
                 pObj = docx.createP()
-                pObj.addText('Total cost: $' + req.body.total, { font_face: 'Calibri(Body)', font_size: 11, color: '000000', bold: true })
+                pObj.addText('Total cost: $' + req.body.total, { font_face: 'Calibri(Body)', font_size: 12, color: '000000', bold: true })
                     // Let's generate the Word document into a file:
 
-                let out = fs.createWriteStream('./uploads/' + req.body.jobName + '_external_qoute.docx');
+                let out = fs.createWriteStream('./uploads/' + req.body.jobName + '_external_quote.docx');
                 console.log("BLAH");
 
                 out.on('error', function(err) {
@@ -259,10 +259,10 @@ router.post("/quote", (req, res) => {
                         from: myEmail,
                         to: jobEmail,
                         subject: 'Quote',
-                        text: 'Hello ' + req.body.contactName + '. Please find the attached copy of qoute in this email.',
+                        text: 'Hello ' + req.body.contactName + '. Please find the attached copy of quote in this email.',
                         attachments: [{
-                            filename: req.body.jobName + '_' + date + '_qoute.docx',
-                            content: fs.createReadStream('./uploads/' + req.body.jobName + '_external_qoute.docx')
+                            filename: req.body.jobName + '_' + date + '_quote.docx',
+                            content: fs.createReadStream('./uploads/' + req.body.jobName + '_external_quote.docx')
                                 //  filepath: process.cwd() + '/example.docx',
                                 // contentType: "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
                         }]
@@ -272,7 +272,7 @@ router.post("/quote", (req, res) => {
                         if (err) {
                             console.log("Failed to send email.");
                             console.log(err);
-                            res.status(500).json({ "error": "Opps soemthing went wrong while sending email" });
+                            res.status(500).json({ "error": "Opps something went wrong while sending email" });
                         } else {
                             console.log("Email sent");
                             var result = {
@@ -326,7 +326,7 @@ function smallDelay() {
 }
 
 router.post("/quote2", (req, res) => {
-
+    var description = req.body.description;
 
     var today = new Date();
     console.log("Company name:" + req.body.companyName + "\nContactName: " + req.body.contactName);
@@ -373,7 +373,8 @@ router.post("/quote2", (req, res) => {
     pObj.addText('Company name: ' + req.body.companyName, { font_face: 'Calibri(Body)', font_size: 12, color: '000000', bold: true })
     pObj.addLineBreak()
     pObj.addText('Phone number: ' + req.body.phoneNumber, { font_face: 'Calibri(Body)', font_size: 12, color: '000000', bold: true })
-
+    pObj.addLineBreak()
+    pObj.addText('Job description: ' + description, { font_face: 'Calibri(Body)', font_size: 12, color: '000000', bold: true })
     var table = [
         [{
             val: " ",
@@ -419,7 +420,7 @@ router.post("/quote2", (req, res) => {
     docx.createTable(table, tableStyle);
     // Let's generate the Word document into a file:
 
-    let out = fs.createWriteStream('./uploads/' + req.body.jobName + '_internal_qoute.docx');
+    let out = fs.createWriteStream('./uploads/' + req.body.jobName + '_internal_quote.docx');
 
     out.on('error', function(err) {
         console.log(err);
@@ -430,13 +431,13 @@ router.post("/quote2", (req, res) => {
 
     var jobName = req.body.jobName;
     var jobId = req.body.jobId;
-    var description = req.body.description;
+   
     var companyName = req.body.companyName;
     var contactName = req.body.contactName;
     var phoneNumber = req.body.phoneNumber;
     var jobEmail = req.body.jobEmail;
 
-    const message = "The internal qoute was created successfully!";
+    const message = "The internal quote was created successfully!";
 
     Job.findByIdAndUpdate(jobId).then((job) => {
         job.status = "saved";
