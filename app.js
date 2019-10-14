@@ -3,6 +3,7 @@ const app = express();
 const morgan = require('morgan'); //login, next function
 const bodyParser = require('body-parser'); //to collect the json data
 const mongoose = require('mongoose');
+require('dotenv').config()
 
 
 const userRoutes = require('./api/routes/users');
@@ -13,13 +14,13 @@ const adminRoutes = require('./api/routes/admin');
 app.use(morgan('dev'));
 
 //local database
-/*
+
 mongoose.connect('mongodb://127.0.0.1:27017/industry_project', {
     useNewUrlParser: true
-});*/
+});
 
 //mlab database
-mongoose.connect('mongodb://mariae:aspire2@ds135128.mlab.com:35128/heroku_gjft1s3f', {
+mongoose.connect('mongodb://'+ process.env.MLAB_USER +':'+ process.env.MLAB_PASSWORD+'@ds135128.mlab.com:35128/heroku_gjft1s3f', {
     useNewUrlParser: true
 });
 
