@@ -12,9 +12,17 @@ const adminRoutes = require('./api/routes/admin');
 
 app.use(morgan('dev'));
 
+//local database
+/*
 mongoose.connect('mongodb://127.0.0.1:27017/industry_project', {
     useNewUrlParser: true
+});*/
+
+//mlab database
+mongoose.connect('mongodb://mariae:aspire2@ds135128.mlab.com:35128/heroku_gjft1s3f', {
+    useNewUrlParser: true
 });
+
 mongoose.Promise = global.Promise;
 
 app.use(bodyParser.urlencoded({
