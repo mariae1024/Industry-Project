@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const morgan = require('morgan');//login, next function
+const morgan = require('morgan'); //login, next function
 const bodyParser = require('body-parser'); //to collect the json data
 const mongoose = require('mongoose');
 
@@ -35,6 +35,11 @@ app.use((req, res, next) => {
 
 app.set('view engine', 'ejs');
 app.use(express.static("views"));
+
+app.use(express.static("uploads"));
+
+app.use(express.static("logo"));
+
 
 app.use('/users', userRoutes);
 app.use('/jobs', jobsRoutes);

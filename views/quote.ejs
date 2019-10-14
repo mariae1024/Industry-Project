@@ -1,3 +1,4 @@
+<<<<<<< HEAD
                 <!DOCTYPE html>
                 <html>
 
@@ -252,3 +253,279 @@
                 </body>
 
                 </html>
+=======
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Quote</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="/static/css/quote.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <form style="margin: 10px;" method="POST">
+                <div class="form-row align-items-center">
+                    <div class="col-3">
+                        <h1 class="col-12">Quote</h1>
+                    </div>
+                </div>
+                <!--Job Title-->
+                <div class="form-row">
+                    <div class="form-group col-md-3" style="font-weight: bolder">
+                        <span for="inputJT">Job Title</span>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <span><h5><%= jobName %></h5></span>
+                    </div>
+                    <div class="form-group col-md-3">
+                    </div>
+                    <div class="form-group col-md-3">
+                    </div>
+                </div>
+
+
+                <!--Job Description-->
+                <div class="form-row">
+                    <div class="form-group col-md-3" style="font-weight: bolder">
+                        <span for="inputJD">Job Description</span>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <span> <h5><%= description %></h5></span>
+                    </div>
+                    <div class="form-group col-md-3">
+                    </div>
+                    <div class="form-group col-md-3">
+                    </div>
+                </div>
+
+
+                <!--Labels-->
+                <div class="form-row">
+                    <div class="form-group col-md-3 d-none d-md-block">
+                        <!--hidden property used for sm and md screens-->
+                    </div>
+                    <div class="form-group col-md-3 d-none d-md-block">
+                        <label for="hours" style="font-weight: bolder; margin-left:50px;" name="hours">Hours</label>
+                    </div>
+                    <div class="form-group col-md-3 d-none d-md-block">
+                        <label for="wage" style="font-weight: bolder; margin-left:50px;" name="wage">Wage</label>
+                    </div>
+                    <div class="form-group col-md-3 d-none d-md-block">
+                        <label for="total" style="font-weight: bolder; margin-left:50px;" name="total">Total</label>
+                    </div>
+                </div>
+
+                <!--IT-->
+                <div class="form-row">
+                    <div class="form-group col-md-3" style="font-weight: bolder">
+                        <label for="inputIT">IT</label>
+                    </div>
+                    <div class="form-group col-md-3 ">
+                        <div class="d-block d-xl-none d-block d-md-none">
+                            <!--hidden property used for xl and md screens-->
+                            <label for="total" style="font-weight: bolder; margin-left:50px;">Hours</label>
+                        </div>
+                        <input type="number" class="form-control" name="hoursIT">
+                    </div>
+                    <div class="form-group col-md-3 ">
+                        <div class="d-block d-xl-none d-block d-md-none">
+                            <!--hidden property used for xl and md screens-->
+                            <label for="total" style="font-weight: bolder; margin-left:50px;">Wage</label>
+                        </div>
+                        <input type="number" class="form-control" name="wageIT">
+                    </div>
+                    <div class="form-group col-md-3 ">
+                        <div class="d-block d-xl-none d-block d-md-none">
+                            <!--hidden property used for xl and md screens-->
+                            <label for="total" style="font-weight: bolder; margin-left:50px;">Total</label>
+                        </div>
+                        <input type="number" class="form-control" name="totalIT">
+                    </div>
+                </div>
+
+                <!--Business-->
+                <div class="form-row">
+                    <div class="form-group col-md-3" style="font-weight: bolder">
+                        <label for="inputIT">Business</label>
+                    </div>
+                    <div class="form-group col-md-3 ">
+                        <div class="d-block d-xl-none d-block d-md-none">
+                            <!--hidden property used for xl and md screens-->
+                            <label for="total" style="font-weight: bolder; margin-left:50px;">Hours</label>
+                        </div>
+                        <input type="number" class="form-control" name="hoursB">
+                    </div>
+                    <div class="form-group col-md-3 ">
+                        <div class="d-block d-xl-none d-block d-md-none">
+                            <!--hidden property used for xl and md screens-->
+                            <label for="total" style="font-weight: bolder; margin-left:50px;">Wage</label>
+                        </div>
+                        <input type="number" class="form-control" name="wageB">
+                    </div>
+                    <div class="form-group col-md-3 ">
+                        <div class="d-block d-xl-none d-block d-md-none">
+                            <!--hidden property used for xl and md screens-->
+                            <label for="total" style="font-weight: bolder; margin-left:50px;">Total</label>
+                        </div>
+                        <input type="number" class="form-control" name="totalB">
+                    </div>
+                </div>
+
+                <!--Management Cost-->
+                <div class="form-row">
+                    <div class="form-group col-md-3" style="font-weight: bolder">
+                        <label for="inputIT">Management Cost</label>
+                    </div>
+                    <div class="form-group col-md-3 ">
+                        <div class="d-block d-xl-none d-block d-md-none">
+                            <!--hidden property used for xl and md screens-->
+                            <label for="total" style="font-weight: bolder; margin-left:50px;">Hours</label>
+                        </div>
+                        <input type="number" class="form-control" name="hoursM">
+                    </div>
+                    <div class="form-group col-md-3 ">
+                        <div class="d-block d-xl-none d-block d-md-none">
+                            <!--hidden property used for xl and md screens-->
+                            <label for="total" style="font-weight: bolder; margin-left:50px;">Wage</label>
+                        </div>
+                        <input type="number" class="form-control" name="wageM">
+                    </div>
+                    <div class="form-group col-md-3 ">
+                        <div class="d-block d-xl-none d-block d-md-none">
+                            <!--hidden property used for xl and md screens-->
+                            <label for="total" style="font-weight: bolder; margin-left:50px;">Total</label>
+                        </div>
+                        <input type="number" class="form-control" name="totalM">
+                    </div>
+                </div>
+
+                <!--OverHead-->
+                <div class="form-row">
+                    <div class="form-group col-md-3 d-none d-md-block">
+                        <!--hidden property used for md screens-->
+                    </div>
+                    <div class="form-group col-md-3 d-none d-md-block">
+                        <!--hidden property used for md screens-->
+                    </div>
+                    <div class="form-group col-md-3 d-none d-md-block">
+                        <label for="wage" style="font-weight: bolder; margin-left:50px;"></label>
+                    </div>
+                    <div class="form-group col-md-3 d-none d-md-block">
+                        <!--hidden property used for md screens-->
+                        <label for="total" style="font-weight: bolder; margin-left:50px;"></label>
+                    </div>
+                    <div class="form-group col-md-3" style="font-weight: bolder">
+                        <label for="inputIT">Overhead 50%</label>
+                    </div>
+                    <div class="form-group col-md-3 ">
+                        <div class="d-block d-xl-none d-block d-md-none">
+                            <!--hidden property used for xl and md screens-->
+                            <label for="total" style="font-weight: bolder; margin-left:50px;">Hours Consumed</label>
+                        </div>
+                        <input type="number" class="form-control" name="hoursO">
+                    </div>
+                    <div class="form-group col-md-3 ">
+                        <div class="d-block d-xl-none d-block d-md-none">
+                            <!--hidden property used for xl and md screens-->
+                            <label for="total" style="font-weight: bolder; margin-left:50px;"></label>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-3 ">
+                        <div class="d-block d-xl-none d-block d-md-none">
+                            <!--hidden property used for xl and md screens-->
+                            <label for="total" style="font-weight: bolder; margin-left:50px;">Cost</label>
+                        </div>
+                        <input type="number" class="form-control" name="totalO">
+                    </div>
+                </div>
+
+                <!--GST-->
+                <div class="form-row">
+                    <div class="form-group col-md-3" style="font-weight: bolder">
+                        <label for="inputIT">GST 15%</label>
+                    </div>
+                    <div class="form-group col-md-3 ">
+                        <div class="d-block d-xl-none d-block d-md-none">
+                            <!--hidden property used for xl and md screens-->
+                            <label for="total" style="font-weight: bolder; margin-left:50px;"></label>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-3 ">
+                        <div class="d-block d-xl-none d-block d-md-none">
+                            <!--hidden property used for xl and md screens-->
+                            <label for="total" style="font-weight: bolder; margin-left:50px;"></label>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-3 ">
+                        <div class="d-block d-xl-none d-block d-md-none">
+                            <!--hidden property used for xl and md screens-->
+                            <label for="total" style="font-weight: bolder; margin-left:50px;">Cost</label>
+                        </div>
+                        <input type="number" class="form-control" name="totalGST">
+                    </div>
+                </div>
+
+                <!--Total-->
+                <div class="form-row">
+                    <div class="form-group col-md-3" style="font-weight: bolder">
+                        <label for="inputIT">Total</label>
+                    </div>
+                    <div class="form-group col-md-3 ">
+                        <div class="d-block d-xl-none d-block d-md-none">
+                            <!--hidden property used for xl and md screens-->
+                            <label for="total" style="font-weight: bolder; margin-left:50px;"></label>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-3 ">
+                        <div class="d-block d-xl-none d-block d-md-none">
+                            <!--hidden property used for xl and md screens-->
+                            <label for="total" style="font-weight: bolder; margin-left:50px;"></label>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-3 ">
+                        <div class="d-block d-xl-none d-block d-md-none">
+                            <!--hidden property used for xl and md screens-->
+                            <label for="total" style="font-weight: bolder; margin-left:50px;">Cost</label>
+                        </div>
+                        <input type="number" class="form-control" name="total">
+                    </div>
+                </div>
+                <input style="display: none" value="<%= jobName %>" name="jobName">
+                <input style="display: none" value="<%= jobId %>" name="jobId">
+                <input style="display: none" value="<%= companyName %>" name="companyName">
+                <input style="display: none" value="<%= contactName %>" name="contactName">
+                <input style="display: none" value="<%= phoneNumber %>" name="phoneNumber">
+                <input style="display: none" value="<%= description %>" name="description">
+                <input style="display: none" value="<%= jobEmail %>" name="jobEmail">
+
+                <button type="submit" id="quote-save-button" class="btn btn-primary" data-formAction="/admin/quote2" method="POST">Save</button>
+                <button type="submit" id="quote-send-button" class="btn btn-primary" data-formAction="/admin/quote" method="POST">Send</button>
+                <% if(message != null) { %>
+                    <h5 style="color: green">
+                        <br>
+                        <%= message %>
+
+                    </h5>
+                    <% } %>
+            </form>
+
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="/static/js/quote.js"></script>
+</body>
+
+</html>
+>>>>>>> origin/master

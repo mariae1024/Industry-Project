@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /*
 .container {
     background: linear-gradient(57deg, #acb3b2, #166dc4);
@@ -116,3 +117,18 @@ input[type=button]:hover {
 
 
 
+=======
+
+        .container {
+        background: linear-gradient(57deg, #acb3b2, #166dc4);
+        border: 5px solid black;
+        width: 50%;
+    }
+    /* Responsive layout - when the screen is less than 500px wide, make the two columns stack on top of each other instead of next to each other */
+    
+    @media screen and (max-width: 500px) {
+        .form-row,
+        .col-3 {
+            width: 100%;
+        }
+>>>>>>> origin/master

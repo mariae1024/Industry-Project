@@ -7,7 +7,7 @@
     $('#description').val("");
     $("#payment1").prop("checked", false);
     $("#payment2").prop("checked", false);
-    $("#payment3").prop("checked", false);3
+    $("#payment3").prop("checked", false);
     $("#options").val("Select");
     $("#startDate").val("");
     $("#endDate").val("");
@@ -41,13 +41,38 @@
 
   $("#job").change(function () {
 
+    
     var jobType = $("#job").children("option:selected").val();
     if (jobType == 'IT') {
       $("#jobType").text("IT");
+      
+      $('.allJobs').each(function(){
+        console.log($(this).data('value'));
+        if($(this).data('value') == "Business"){
+          $(this).css("display", "none");
+        } else {
+          $(this).css("display", "block");
+        }
+      });
+      
+
     } else if (jobType == 'Business'){
       $("#jobType").text("Business");
+      $('.allJobs').each(function(){
+        console.log($(this).data('value'));
+        if($(this).data('value') == "IT"){
+          $(this).css("display", "none");
+        } else {
+          $(this).css("display", "block");
+        }
+      });
+
     } else {
       $("#jobType").text("All Jobs");
+      $('.allJobs').each(function(){
+        $(this).css("display", "block");
+      })
+
     }
   })
 

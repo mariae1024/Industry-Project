@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Forgot Password</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="/static/css/adminForgotPass.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+    <div class="container" >
+        
+            <div class="row">
+                <div class="col">
+                <form action="/admin/reset/<%= token %>" method="POST">
+                    <div class="form-row jumbotron col-md-6 col-sm-12" style="margin:150px 350px;">
+                        <div class="title col-12">
+                            <h3>Please fill the information to reset your password</h3><br>
+                        </div>
+                        
+                                <% if(message != "") { %>
+                                <!-- <img class="vertical" src="/assets/img/icons/warning.png" alt=""> -->
+                                <div style="margin: auto;margin-bottom: 5px;margin-top: 5px;color: red;">
+                                    <%= message %></div>
+                                <% } %>
+                        <div class="form-group col-12">
+                            <input class="form-control" type="password" id="newpass" name="password" placeholder="Enter your new password here...">
+                        </div><br>
+                        <div class="form-group col-12">
+                            <input class="form-control" type="password" id="verifypass" name="confirm" placeholder="VERIFY your new password here...">
+                        </div>
+                        <input class="btn btn-primary" style="margin: auto; margin-top: 10px;" type="submit" value="Submit">
+                    </div>
+                </form>
+                </div>
+            </div>
+
+    </div>
+
+</body>
+
+</html>
