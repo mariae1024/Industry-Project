@@ -240,11 +240,13 @@ router.post("/quote", (req, res) => {
 
                 //  console.log(req.body.data_jobName);
 
-                let transport = nodemailer.createTransport({
-                    service: 'gmail',
+                var transport = nodemailer.createTransport({
+                    host: 'smtp.gmail.com',
+                    port: 465,
+                    secure: true, // use SSL
                     auth: {
-                        user: myEmail,
-                        pass: 'Aspire2gf'
+                        user: 'gradforce.co.nz@gmail.com',
+                        pass: process.env.GMAIL
                     }
                 });
                 console.log('File created');
@@ -258,7 +260,7 @@ router.post("/quote", (req, res) => {
                         text: 'Hello ' + req.body.contactName + '. Please find the attached copy of quote in this email.',
 
                      //take off attachments 
-                        
+
                      /*   attachments: [{
                             filename: req.body.jobName + '_' + date + '_quote.docx',
                             content: fs.createReadStream('./uploads/' + req.body.jobName + '_external_quote.docx')
