@@ -251,10 +251,10 @@ router.post("/quote", (req, res) => {
                 });
                 console.log('File created');
                 console.log('Wait for 10 seconds....');
-                setTimeout(function() {
-                    console.log('10 seconds complete');
+                // setTimeout(function() {
+                //     console.log('10 seconds complete');
                     let message = {
-                        from: myEmail,
+                        from: '"GradForce" <gradforce.co.nz@gmail.com>',
                         to: jobEmail,
                         subject: 'Quote',
                         text: 'Hello ' + req.body.contactName + '. Please find the attached copy of quote in this email.',
@@ -283,7 +283,7 @@ router.post("/quote", (req, res) => {
                             callback(null, result);
                         }
                     });
-                }, 10000);
+                // }, 10000);
 
             }
         ],
