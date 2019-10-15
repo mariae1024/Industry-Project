@@ -261,12 +261,12 @@ router.post("/quote", (req, res) => {
 
                      //take off attachments 
 
-                        attachments: [{
+                      /*  attachments: [{
                             filename: req.body.jobName + '_' + date + '_quote.docx',
                             content: fs.createReadStream('./uploads/' + req.body.jobName + '_external_quote.docx')
                                 //  filepath: process.cwd() + '/example.docx',
                                 // contentType: "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
-                        }]
+                        }]*/
                     };
                     transport.sendMail(message, function(err) {
                         //console.log("Filepath: " + message.attachments.filepath);
@@ -283,7 +283,7 @@ router.post("/quote", (req, res) => {
                             callback(null, result);
                         }
                     });
-                 }, 10000);
+                 }, 5000);
             }
         ],
 
