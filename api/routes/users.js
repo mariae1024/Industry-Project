@@ -132,13 +132,9 @@ router.post("/login", (req, res, next) => {
                         res.redirect('/users/log_in/?message=' + message + '#login');
                     }
                     if (result) {
-                        const token = jwt.sign({
-                                email: user[0].email,
-                                userId: user[0]._id
-                            },
-                            process.env.JWT_KEY, {
-                                expiresIn: "1h"
-                            })
+                        jwt.sign({
+                            data: 'foobar'
+                          }, 'secret', { expiresIn: '1h' });
                         if (!userResponse) {
                             var message = "robot user";
                             return res.redirect('/users/log_in/?message=' + message + '#login');
