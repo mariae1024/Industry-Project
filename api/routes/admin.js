@@ -256,12 +256,15 @@ router.post("/quote", (req, res) => {
                         to: jobEmail,
                         subject: 'Quote',
                         text: 'Hello ' + req.body.contactName + '. Please find the attached copy of quote in this email.',
-                        attachments: [{
+
+                     //take off attachments 
+                        
+                     /*   attachments: [{
                             filename: req.body.jobName + '_' + date + '_quote.docx',
                             content: fs.createReadStream('./uploads/' + req.body.jobName + '_external_quote.docx')
                                 //  filepath: process.cwd() + '/example.docx',
                                 // contentType: "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
-                        }]
+                        }]*/
                     };
                     transport.sendMail(message, function(err) {
                         //console.log("Filepath: " + message.attachments.filepath);
