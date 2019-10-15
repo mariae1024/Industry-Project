@@ -96,13 +96,9 @@ router.post("/login", (req, res, next) => {
                                     res.redirect('/admin/log_in/?message=' + message);
                                 }
                                 if (result) {
-                                    const token = jwt.sign({
-                                            email: admin[0].email,
-                                            userId: admin[0]._id
-                                        },
-                                        process.env.JWT_KEY, {
-                                            expiresIn: "1h"
-                                        })
+                                    jwt.sign({
+                                        data: 'foobar'
+                                      }, 'secret', { expiresIn: '1h' });
                                     res.render("../views/adminPanel", {
                                         admin: admin[0],
                                         jobs: jobs,
