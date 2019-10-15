@@ -251,8 +251,8 @@ router.post("/quote", (req, res) => {
                 });
                 console.log('File created');
                 console.log('Wait for 10 seconds....');
-                // setTimeout(function() {
-                //     console.log('10 seconds complete');
+                setTimeout(function() {
+                 console.log('10 seconds complete');
                     let message = {
                         from: '"GradForce" <gradforce.co.nz@gmail.com>',
                         to: jobEmail,
@@ -283,8 +283,7 @@ router.post("/quote", (req, res) => {
                             callback(null, result);
                         }
                     });
-                // }, 10000);
-
+                 }, 10000);
             }
         ],
 
