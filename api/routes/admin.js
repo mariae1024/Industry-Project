@@ -13,7 +13,8 @@ var url = require('url');
 
 const delay = ms => new Promise(res => setTimeout(res, ms))
 
-
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
+"use strict";
 
 //for email
 var crypto = require('crypto');
