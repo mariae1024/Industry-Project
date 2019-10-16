@@ -106,10 +106,7 @@ router.post("/signup", upload.single('image'), (req, res, next) => {
 
 router.post("/login", (req, res, next) => {
 
-    //WARNING !!
-    //captcha bypass
-
-    var userResponse = true; //req.body['g-recaptcha-response'];
+    var userResponse = req.body['g-recaptcha-response'];
     console.log(userResponse);
 
     User.find({
